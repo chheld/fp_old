@@ -1,2 +1,2 @@
-# fp w520 aaa
+# fp w520
 Fischer App
