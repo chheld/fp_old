@@ -29,7 +29,6 @@ public  class OrderDetailsFragment extends Fragment {
     private AppController mAppController = AppController.getInstance();
     private Auftrag mAuftrag;
 
-    private Integer mSearchRequestCounter = 0;
     private Context mContext;
     private TextView tvVertreterName;
 
@@ -51,6 +50,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         // Status anzeigen
         TextView tvStatus2 = (TextView) view.findViewById(R.id.tvStatus2);
+        TextView tvzDesc = (TextView) view.findViewById(R.id.tvZDesc);
         TextView tvSpezifizierung = (TextView) view.findViewById(R.id.tvSpezifizierung);
 
         // Termine anzeigen
@@ -77,10 +77,21 @@ public  class OrderDetailsFragment extends Fragment {
             tvBemerkung.setText(mAuftrag.getBEMERKUNG());
             if(tvBemerkung.getText().toString().trim().length()==0)  tvBemerkung.setVisibility(View.GONE);
             tvBestellnummer.setText(mAuftrag.getBELEGNRBEST());
-            if(tvBestellnummer.getText().toString().trim().length()==0)  tvBestellnummer.setVisibility(View.GONE);
+            if(tvBestellnummer.getText().toString().trim().length()==0) {
+                tvBestellnummer.setVisibility(View.GONE);
+            } else
+            {
+                tvBestellnummer.setText("Bestellung: " + mAuftrag.getBELEGNRBEST());
+            }
             tvKommission.setText(mAuftrag.getKOMM());
-            if(tvKommission.getText().toString().trim().length()==0)  tvKommission.setVisibility(View.GONE);
+            if(tvKommission.getText().toString().trim().length()==0) {
+                tvKommission.setVisibility(View.GONE);
+            } else
+            {
+                tvKommission.setText("Kommission: " + mAuftrag.getKOMM());
+            }
 
+            // Vertreter anzeigen
             tvVertr1.setText(mAuftrag.getVERTRETER1());
             if(tvVertr1.getText().toString().trim().length()==0) {
                 tvVertr1.setVisibility(View.GONE);
@@ -100,6 +111,8 @@ public  class OrderDetailsFragment extends Fragment {
             }
 
             // Status anzeigen
+            tvzDesc.setText(mAuftrag.getZDESC());
+            if(tvzDesc.getText().toString().trim().length()==0)  tvzDesc.setVisibility(View.GONE);
             tvStatus2.setText(mAuftrag.getSTATUS2());
             if(tvStatus2.getText().toString().trim().length()==0)  tvStatus2.setVisibility(View.GONE);
             tvSpezifizierung.setText(mAuftrag.getSTATUS1());
@@ -160,9 +173,6 @@ public  class OrderDetailsFragment extends Fragment {
 
     private void callAPIContactByPersonNr(String search) {
 
-        // Increase counter for pending search requests
-        mSearchRequestCounter++;
-
         //Toast.makeText(mContext, "Suche Person ..." , Toast.LENGTH_SHORT).show();
         JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
 
@@ -172,12 +182,13 @@ public  class OrderDetailsFragment extends Fragment {
                     VolleyLog.v("Response:%n %s", response.toString(4));
                     JSONArray contact = response.getJSONArray("contact");
                     JSONObject jsonA = contact.getJSONObject(0);
-                    mSearchRequestCounter--;
-                    if (mSearchRequestCounter < 1) {
                         //progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                         //Toast.makeText(mContext, contact.length() + "x Personnr gefunden", Toast.LENGTH_SHORT).show();
-                        tvVertreterName.setText(jsonA.getString("VORNAME") +  " " + jsonA.getString("NAME"));
-                    }
+                        String vname = jsonA.getString("VORNAME");
+                        if (vname.equals("null")) vname = "";
+                        String nname = jsonA.getString("NAME");
+                        if (nname.equals("null")) nname = "";
+                        tvVertreterName.setText(vname + " " + nname);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     VolleyLog.e("Error: ", e.getMessage());
@@ -190,7 +201,6 @@ public  class OrderDetailsFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
                 Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
-                mSearchRequestCounter--;
                 //if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
             }
         });

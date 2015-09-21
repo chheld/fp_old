@@ -51,7 +51,8 @@
                 android:layout_below="@+id/lblAuftrag"
                 android:layout_alignLeft="@+id/lblAuftrag"
                 android:layout_alignStart="@+id/lblAuftrag"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +84,8 @@
                 android:layout_below="@+id/tvBemerkung"
                 android:layout_alignLeft="@+id/tvBemerkung"
                 android:layout_alignStart="@+id/tvBemerkung"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,7 +96,8 @@
                 android:layout_below="@+id/tvBestellnummer"
                 android:layout_alignLeft="@+id/tvBestellnummer"
                 android:layout_alignStart="@+id/tvBestellnummer"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -151,8 +154,7 @@
                 android:ellipsize="end"
                 android:layout_alignTop="@+id/lblStatus"
                 android:layout_marginLeft="20dp"
-                android:layout_toLeftOf="@+id/tvLS"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_toLeftOf="@+id/tvLS" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,8 +164,7 @@
                 android:ellipsize="end"
                 android:layout_alignTop="@+id/lblStatus"
                 android:layout_marginLeft="20dp"
-                android:layout_toLeftOf="@+id/tvEN"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_toLeftOf="@+id/tvEN" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -173,8 +174,7 @@
                 android:ellipsize="end"
                 android:layout_alignTop="@+id/lblStatus"
                 android:layout_marginLeft="20dp"
-                android:layout_toLeftOf="@+id/tvRG"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_toLeftOf="@+id/tvRG" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -184,8 +184,7 @@
                 android:ellipsize="end"
                 android:layout_alignTop="@+id/lblStatus"
                 android:layout_marginLeft="20dp"
-                android:layout_alignParentEnd="true"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,10 +203,11 @@
                 android:text="Spezifizierung"
                 android:id="@+id/tvSpezifizierung"
                 android:ellipsize="end"
-                android:layout_below="@+id/lblStatus"
+                android:layout_below="@+id/tvZDesc"
                 android:layout_alignLeft="@+id/lblStatus"
                 android:layout_toRightOf="@+id/ivStatus"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -218,7 +218,21 @@
                 android:layout_below="@+id/tvSpezifizierung"
                 android:layout_alignLeft="@+id/tvSpezifizierung"
                 android:layout_toRightOf="@+id/ivStatus"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Druckstatus"
+                android:id="@+id/tvZDesc"
+                android:ellipsize="end"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/lblStatus"
+                android:layout_alignStart="@+id/lblStatus"
+                android:layout_below="@+id/lblStatus"
+                android:layout_toRightOf="@+id/ivStatus"
+                android:layout_marginTop="5dp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -264,7 +278,8 @@
                 android:ellipsize="end"
                 android:layout_below="@+id/tvVertreter1"
                 android:layout_alignParentEnd="true"
-                android:layout_toRightOf="@+id/ivKontakt" />
+                android:layout_toRightOf="@+id/ivKontakt"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -424,7 +439,8 @@
                 android:ellipsize="end"
                 android:layout_below="@+id/lblKdNr"
                 android:layout_alignLeft="@+id/lblKdNr"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -492,7 +508,8 @@
                 android:layout_below="@+id/tvLieferAdresseNr"
                 android:layout_alignLeft="@+id/tvLieferAdresseNr"
                 android:layout_toRightOf="@+id/ivLKW"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp" />
         </RelativeLayout>
 
         <RelativeLayout
