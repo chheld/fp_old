@@ -248,6 +248,16 @@
             android:layout_margin="5dp"
             android:clickable="true">
 
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBarVertreter"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTint="#3B7AD6"
+                android:indeterminateTintMode="src_in" />
+
             <ImageView
                 android:layout_height="wrap_content"
                 android:id="@+id/ivKontakt"
@@ -291,14 +301,6 @@
                 android:layout_toEndOf="@+id/ivKontakt"
                 android:layout_alignBottom="@+id/ivKontakt"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBarVertreter"
-                android:layout_centerInParent="true"
-                android:indeterminate="false" />
 
         </RelativeLayout>
 

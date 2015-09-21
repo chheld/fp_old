@@ -152,7 +152,7 @@ public  class OrderDetailsFragment extends Fragment {
             tvKdNr.setText(mAuftrag.getMNR());
             tvKTxt.setText(mAuftrag.getKTXT());
             if(tvKTxt.getText().toString().trim().length()==0)  tvKTxt.setVisibility(View.GONE);
-            tvKW.setText(Integer.toString(mAuftrag.getKW()));
+            tvKW.setText("KW " + Integer.toString(mAuftrag.getKW()));
             tvKJ.setText(Integer.toString(mAuftrag.getKJ()));
 
             // Lieferung anzeigen
