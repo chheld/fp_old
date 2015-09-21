@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public  class OrderDetailsFragment extends Fragment {
 
     private Context mContext;
     private TextView tvVertreterName;
+    private ProgressBar pbVertreter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public  class OrderDetailsFragment extends Fragment {
         TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
         TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
 
+        pbVertreter = (ProgressBar) view.findViewById(R.id.progressBarVertreter);
         TextView tvVertr1 = (TextView) view.findViewById(R.id.tvVertreter1);
         tvVertreterName = (TextView) view.findViewById(R.id.tvVertreterName);
 
@@ -92,6 +95,7 @@ public  class OrderDetailsFragment extends Fragment {
             }
 
             // Vertreter anzeigen
+
             tvVertr1.setText(mAuftrag.getVERTRETER1());
             if(tvVertr1.getText().toString().trim().length()==0) {
                 tvVertr1.setVisibility(View.GONE);
@@ -173,6 +177,8 @@ public  class OrderDetailsFragment extends Fragment {
 
     private void callAPIContactByPersonNr(String search) {
 
+        pbVertreter.setVisibility(View.VISIBLE);
+
         //Toast.makeText(mContext, "Suche Person ..." , Toast.LENGTH_SHORT).show();
         JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
 
@@ -189,10 +195,14 @@ public  class OrderDetailsFragment extends Fragment {
                         String nname = jsonA.getString("NAME");
                         if (nname.equals("null")) nname = "";
                         tvVertreterName.setText(vname + " " + nname);
+                        pbVertreter.setVisibility(View.GONE);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     VolleyLog.e("Error: ", e.getMessage());
                     Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                    pbVertreter.setVisibility(View.GONE);
+
                 }
             }
         }, new Response.ErrorListener() {
@@ -202,6 +212,7 @@ public  class OrderDetailsFragment extends Fragment {
                 VolleyLog.e("Error: ", error.getMessage());
                 Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
                 //if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
+                pbVertreter.setVisibility(View.GONE);
             }
         });
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
