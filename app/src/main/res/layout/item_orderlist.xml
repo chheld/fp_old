@@ -23,7 +23,8 @@
         android:layout_alignLeft="@+id/tvANrlll"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvANrlll"
-        android:paddingTop="3dp" />
+        android:paddingTop="3dp"
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +48,8 @@
         android:layout_alignLeft="@+id/tvANrlll"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tvANrlll"
-        android:paddingTop="3dp" />
+        android:paddingTop="3dp"
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +61,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignLeft="@+id/lblKdNr"
         android:layout_alignStart="@+id/lblKdNr"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -67,10 +69,10 @@
         android:text="Bemerkung"
         android:id="@+id/tvBemerkung"
         android:ellipsize="end"
-        android:textSize="12sp"
         android:layout_below="@+id/tvKTxt"
         android:layout_alignParentRight="true"
         android:layout_alignLeft="@+id/tvKTxt"
-        android:layout_alignStart="@+id/tvKTxt" />
+        android:layout_alignStart="@+id/tvKTxt"
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

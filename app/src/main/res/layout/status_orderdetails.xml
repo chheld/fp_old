@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:id="@+id/ivAB"
+        android:src="@drawable/ic_order2"
+        android:layout_marginRight="5dp"
+        android:tintMode="src_in"
+        android:tint="#2b000000" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:id="@+id/ivLS"
+        android:src="@drawable/ic_ic_lorry4"
+        android:layout_marginRight="5dp"
+        android:tintMode="src_in"
+        android:tint="#2b000000" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:id="@+id/ivENT"
+        android:src="@drawable/ic_stock"
+        android:layout_marginRight="5dp"
+        android:tintMode="src_in"
+        android:tint="#2b000000" />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:id="@+id/ivRG"
+        android:src="@drawable/ic_logo_small_transparent"
+        android:tintMode="src_in"
+        android:tint="#2b000000" />
+</LinearLayout>
