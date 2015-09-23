@@ -33,6 +33,8 @@ public  class OrderDetailsFragment extends Fragment {
     private Context mContext;
     private TextView tvVertreterName;
     private ProgressBar pbVertreter;
+    private TextView tvLieferadresse;
+    private ProgressBar pbLieferadresse;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,7 +71,9 @@ public  class OrderDetailsFragment extends Fragment {
         TextView tvKJ = (TextView) view.findViewById(R.id.tvKJ);
 
         // Lieferung anzeigen
-        TextView tvLiefAdressNr = (TextView) view.findViewById(R.id.tvLieferAdresseNr);
+        TextView tvLieferadresseNr = (TextView) view.findViewById(R.id.tvLieferAdresseNr);
+        pbLieferadresse = (ProgressBar) view.findViewById(R.id.progressBarLieferadresse);
+        tvLieferadresse = (TextView) view.findViewById(R.id.tvLieferAdresse);
 
         if (getArguments() != null) mAuftrag = getArguments().getParcelable("auftrag");
 
@@ -95,7 +99,6 @@ public  class OrderDetailsFragment extends Fragment {
             }
 
             // Vertreter anzeigen
-
             tvVertr1.setText(mAuftrag.getVERTRETER1());
             if(tvVertr1.getText().toString().trim().length()==0) {
                 tvVertr1.setVisibility(View.GONE);
@@ -156,7 +159,25 @@ public  class OrderDetailsFragment extends Fragment {
             tvKJ.setText(Integer.toString(mAuftrag.getKJ()));
 
             // Lieferung anzeigen
-            tvLiefAdressNr.setText(mAuftrag.getADRNR2());
+            tvLieferadresseNr.setText(mAuftrag.getADRNR2());
+            tvLieferadresse.setText("...");
+            if(tvLieferadresseNr.getText().toString().trim().length()==0) {
+                tvLieferadresseNr.setVisibility(View.GONE);
+            }
+            else
+            {
+                RelativeLayout ly = (RelativeLayout)  view.findViewById(R.id.container_lieferadresse);
+
+                ly.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
+                    }
+                });
+
+                callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
+            }
+
         }
         return view;
     }
@@ -179,7 +200,6 @@ public  class OrderDetailsFragment extends Fragment {
 
         pbVertreter.setVisibility(View.VISIBLE);
 
-        //Toast.makeText(mContext, "Suche Person ..." , Toast.LENGTH_SHORT).show();
         JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
 
             @Override
@@ -188,8 +208,6 @@ public  class OrderDetailsFragment extends Fragment {
                     VolleyLog.v("Response:%n %s", response.toString(4));
                     JSONArray contact = response.getJSONArray("contact");
                     JSONObject jsonA = contact.getJSONObject(0);
-                        //progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
-                        //Toast.makeText(mContext, contact.length() + "x Personnr gefunden", Toast.LENGTH_SHORT).show();
                         String vname = jsonA.getString("VORNAME");
                         if (vname.equals("null")) vname = "";
                         String nname = jsonA.getString("NAME");
@@ -213,6 +231,50 @@ public  class OrderDetailsFragment extends Fragment {
                 Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
                 //if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 pbVertreter.setVisibility(View.GONE);
+            }
+        });
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        AppController.getInstance().addToRequestQueue(req);
+    }
+
+    private void callAPIAdresseByAdresseNr(String search) {
+
+        pbLieferadresse.setVisibility(View.VISIBLE);
+
+        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    VolleyLog.v("Response:%n %s", response.toString(4));
+                    //JSONArray address = response.getJSONArray("address");
+                    //JSONObject jsonA = contact.getJSONObject(0);
+/*
+                    String vname = jsonA.getString("VORNAME");
+                    if (vname.equals("null")) vname = "";
+                    String nname = jsonA.getString("NAME");
+                    if (nname.equals("null")) nname = "";
+                    */
+                    tvLieferadresse.setText("LA gefunden");
+
+                    pbLieferadresse.setVisibility(View.GONE);
+
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                    VolleyLog.e("Error: ", e.getMessage());
+                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                    pbLieferadresse.setVisibility(View.GONE);
+
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
+                pbLieferadresse.setVisibility(View.GONE);
             }
         });
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));

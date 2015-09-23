@@ -447,7 +447,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/container_lieferung"
+            android:id="@+id/container_lieferadresse"
             android:layout_below="@+id/tvKTxt"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -455,6 +455,17 @@
             android:layout_margin="5dp"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBarLieferadresse"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:indeterminateTint="#3B7AD6"
+                android:indeterminateTintMode="src_in"
+                android:layout_gravity="center" />
 
             <ImageView
                 android:layout_height="wrap_content"
@@ -488,6 +499,7 @@
                 android:layout_toRightOf="@+id/ivLKW"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp" />
+
         </RelativeLayout>
 
         <RelativeLayout
