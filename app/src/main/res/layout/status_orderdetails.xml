@@ -8,7 +8,7 @@
         android:layout_height="20dp"
         android:id="@+id/ivAB"
         android:src="@drawable/ic_order2"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:tintMode="src_in"
         android:tint="#2b000000" />
 
@@ -17,7 +17,7 @@
         android:layout_height="22dp"
         android:id="@+id/ivLS"
         android:src="@drawable/ic_ic_lorry4"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:tintMode="src_in"
         android:tint="#2b000000" />
 
@@ -26,7 +26,7 @@
         android:layout_height="20dp"
         android:id="@+id/ivENT"
         android:src="@drawable/ic_stock"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:tintMode="src_in"
         android:tint="#2b000000" />
 
