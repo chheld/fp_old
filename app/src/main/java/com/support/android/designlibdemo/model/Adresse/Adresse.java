@@ -318,11 +318,6 @@ public class Adresse implements Parcelable {
         this.IK = IK;
     }
 
-    public Adresse withIK(String IK) {
-        this.IK = IK;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -339,11 +334,6 @@ public class Adresse implements Parcelable {
      */
     public void setSYSF(String SYSF) {
         this.SYSF = SYSF;
-    }
-
-    public Adresse withSYSF(String SYSF) {
-        this.SYSF = SYSF;
-        return this;
     }
 
     /**
@@ -364,11 +354,6 @@ public class Adresse implements Parcelable {
         this.CREATEDATE = CREATEDATE;
     }
 
-    public Adresse withCREATEDATE(String CREATEDATE) {
-        this.CREATEDATE = CREATEDATE;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -385,11 +370,6 @@ public class Adresse implements Parcelable {
      */
     public void setMODIFYDATE(Object MODIFYDATE) {
         this.MODIFYDATE = MODIFYDATE;
-    }
-
-    public Adresse withMODIFYDATE(Object MODIFYDATE) {
-        this.MODIFYDATE = MODIFYDATE;
-        return this;
     }
 
     /**
@@ -410,11 +390,6 @@ public class Adresse implements Parcelable {
         this.CREATEUSER = CREATEUSER;
     }
 
-    public Adresse withCREATEUSER(String CREATEUSER) {
-        this.CREATEUSER = CREATEUSER;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -431,11 +406,6 @@ public class Adresse implements Parcelable {
      */
     public void setMODIFYUSER(String MODIFYUSER) {
         this.MODIFYUSER = MODIFYUSER;
-    }
-
-    public Adresse withMODIFYUSER(String MODIFYUSER) {
-        this.MODIFYUSER = MODIFYUSER;
-        return this;
     }
 
     /**
@@ -456,11 +426,6 @@ public class Adresse implements Parcelable {
         this.CID = CID;
     }
 
-    public Adresse withCID(String CID) {
-        this.CID = CID;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -477,11 +442,6 @@ public class Adresse implements Parcelable {
      */
     public void setADRESSENR(String ADRESSENR) {
         this.ADRESSENR = ADRESSENR;
-    }
-
-    public Adresse withADRESSENR(String ADRESSENR) {
-        this.ADRESSENR = ADRESSENR;
-        return this;
     }
 
     /**
@@ -502,11 +462,6 @@ public class Adresse implements Parcelable {
         this.PERSONNR = PERSONNR;
     }
 
-    public Adresse withPERSONNR(Object PERSONNR) {
-        this.PERSONNR = PERSONNR;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -523,11 +478,6 @@ public class Adresse implements Parcelable {
      */
     public void setFIRMANR(String FIRMANR) {
         this.FIRMANR = FIRMANR;
-    }
-
-    public Adresse withFIRMANR(String FIRMANR) {
-        this.FIRMANR = FIRMANR;
-        return this;
     }
 
     /**
@@ -548,11 +498,6 @@ public class Adresse implements Parcelable {
         this.ANSCHRIFTNR = ANSCHRIFTNR;
     }
 
-    public Adresse withANSCHRIFTNR(String ANSCHRIFTNR) {
-        this.ANSCHRIFTNR = ANSCHRIFTNR;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -569,11 +514,6 @@ public class Adresse implements Parcelable {
      */
     public void setBEMERKUNG(Object BEMERKUNG) {
         this.BEMERKUNG = BEMERKUNG;
-    }
-
-    public Adresse withBEMERKUNG(Object BEMERKUNG) {
-        this.BEMERKUNG = BEMERKUNG;
-        return this;
     }
 
     /**
@@ -594,11 +534,6 @@ public class Adresse implements Parcelable {
         this.LASTEINM = LASTEINM;
     }
 
-    public Adresse withLASTEINM(String LASTEINM) {
-        this.LASTEINM = LASTEINM;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -615,11 +550,6 @@ public class Adresse implements Parcelable {
      */
     public void setPOSTFACH(Object POSTFACH) {
         this.POSTFACH = POSTFACH;
-    }
-
-    public Adresse withPOSTFACH(Object POSTFACH) {
-        this.POSTFACH = POSTFACH;
-        return this;
     }
 
     /**
@@ -640,11 +570,6 @@ public class Adresse implements Parcelable {
         this.PLZPOSTFACH = PLZPOSTFACH;
     }
 
-    public Adresse withPLZPOSTFACH(String PLZPOSTFACH) {
-        this.PLZPOSTFACH = PLZPOSTFACH;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -661,11 +586,6 @@ public class Adresse implements Parcelable {
      */
     public void setPLZORT(String PLZORT) {
         this.PLZORT = PLZORT;
-    }
-
-    public Adresse withPLZORT(String PLZORT) {
-        this.PLZORT = PLZORT;
-        return this;
     }
 
     /**
@@ -686,11 +606,6 @@ public class Adresse implements Parcelable {
         this.ORT = ORT;
     }
 
-    public Adresse withORT(String ORT) {
-        this.ORT = ORT;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -707,11 +622,6 @@ public class Adresse implements Parcelable {
      */
     public void setSTRASSE(String STRASSE) {
         this.STRASSE = STRASSE;
-    }
-
-    public Adresse withSTRASSE(String STRASSE) {
-        this.STRASSE = STRASSE;
-        return this;
     }
 
     /**
@@ -732,11 +642,6 @@ public class Adresse implements Parcelable {
         this.LAND = LAND;
     }
 
-    public Adresse withLAND(Object LAND) {
-        this.LAND = LAND;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -753,11 +658,6 @@ public class Adresse implements Parcelable {
      */
     public void setSTAAT(String STAAT) {
         this.STAAT = STAAT;
-    }
-
-    public Adresse withSTAAT(String STAAT) {
-        this.STAAT = STAAT;
-        return this;
     }
 
     /**
@@ -778,11 +678,6 @@ public class Adresse implements Parcelable {
         this.LANDKNG = LANDKNG;
     }
 
-    public Adresse withLANDKNG(String LANDKNG) {
-        this.LANDKNG = LANDKNG;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -799,11 +694,6 @@ public class Adresse implements Parcelable {
      */
     public void setWERK(Object WERK) {
         this.WERK = WERK;
-    }
-
-    public Adresse withWERK(Object WERK) {
-        this.WERK = WERK;
-        return this;
     }
 
     /**
@@ -824,11 +714,6 @@ public class Adresse implements Parcelable {
         this.ABLST = ABLST;
     }
 
-    public Adresse withABLST(Object ABLST) {
-        this.ABLST = ABLST;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -845,11 +730,6 @@ public class Adresse implements Parcelable {
      */
     public void setEXTLAGER(Object EXTLAGER) {
         this.EXTLAGER = EXTLAGER;
-    }
-
-    public Adresse withEXTLAGER(Object EXTLAGER) {
-        this.EXTLAGER = EXTLAGER;
-        return this;
     }
 
     /**
@@ -870,11 +750,6 @@ public class Adresse implements Parcelable {
         this.ZUSATZ1 = ZUSATZ1;
     }
 
-    public Adresse withZUSATZ1(String ZUSATZ1) {
-        this.ZUSATZ1 = ZUSATZ1;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -891,11 +766,6 @@ public class Adresse implements Parcelable {
      */
     public void setZUSATZ2(Object ZUSATZ2) {
         this.ZUSATZ2 = ZUSATZ2;
-    }
-
-    public Adresse withZUSATZ2(Object ZUSATZ2) {
-        this.ZUSATZ2 = ZUSATZ2;
-        return this;
     }
 
     /**
@@ -916,11 +786,6 @@ public class Adresse implements Parcelable {
         this.VERWENDUNG1 = VERWENDUNG1;
     }
 
-    public Adresse withVERWENDUNG1(String VERWENDUNG1) {
-        this.VERWENDUNG1 = VERWENDUNG1;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -937,11 +802,6 @@ public class Adresse implements Parcelable {
      */
     public void setVERWENDUNG2(String VERWENDUNG2) {
         this.VERWENDUNG2 = VERWENDUNG2;
-    }
-
-    public Adresse withVERWENDUNG2(String VERWENDUNG2) {
-        this.VERWENDUNG2 = VERWENDUNG2;
-        return this;
     }
 
     /**
@@ -962,11 +822,6 @@ public class Adresse implements Parcelable {
         this.VERWENDUNG3 = VERWENDUNG3;
     }
 
-    public Adresse withVERWENDUNG3(String VERWENDUNG3) {
-        this.VERWENDUNG3 = VERWENDUNG3;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -983,11 +838,6 @@ public class Adresse implements Parcelable {
      */
     public void setVERWENDUNG4(String VERWENDUNG4) {
         this.VERWENDUNG4 = VERWENDUNG4;
-    }
-
-    public Adresse withVERWENDUNG4(String VERWENDUNG4) {
-        this.VERWENDUNG4 = VERWENDUNG4;
-        return this;
     }
 
     /**
@@ -1008,11 +858,6 @@ public class Adresse implements Parcelable {
         this.VERWENDUNG5 = VERWENDUNG5;
     }
 
-    public Adresse withVERWENDUNG5(String VERWENDUNG5) {
-        this.VERWENDUNG5 = VERWENDUNG5;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -1029,11 +874,6 @@ public class Adresse implements Parcelable {
      */
     public void setNAME1(Object NAME1) {
         this.NAME1 = NAME1;
-    }
-
-    public Adresse withNAME1(Object NAME1) {
-        this.NAME1 = NAME1;
-        return this;
     }
 
     /**
@@ -1054,11 +894,6 @@ public class Adresse implements Parcelable {
         this.NAME2 = NAME2;
     }
 
-    public Adresse withNAME2(Object NAME2) {
-        this.NAME2 = NAME2;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -1075,11 +910,6 @@ public class Adresse implements Parcelable {
      */
     public void setNAME3(Object NAME3) {
         this.NAME3 = NAME3;
-    }
-
-    public Adresse withNAME3(Object NAME3) {
-        this.NAME3 = NAME3;
-        return this;
     }
 
     /**
@@ -1100,11 +930,6 @@ public class Adresse implements Parcelable {
         this.SPRACHKNZ = SPRACHKNZ;
     }
 
-    public Adresse withSPRACHKNZ(Object SPRACHKNZ) {
-        this.SPRACHKNZ = SPRACHKNZ;
-        return this;
-    }
-
     /**
      *
      * @return
@@ -1121,11 +946,6 @@ public class Adresse implements Parcelable {
      */
     public void setSUBTYPE0(String SUBTYPE0) {
         this.SUBTYPE0 = SUBTYPE0;
-    }
-
-    public Adresse withSUBTYPE0(String SUBTYPE0) {
-        this.SUBTYPE0 = SUBTYPE0;
-        return this;
     }
 
     /**
@@ -1146,10 +966,6 @@ public class Adresse implements Parcelable {
         this.RURALROUTE = RURALROUTE;
     }
 
-    public Adresse withRURALROUTE(Object RURALROUTE) {
-        this.RURALROUTE = RURALROUTE;
-        return this;
-    }
 
     /**
      *
@@ -1169,10 +985,6 @@ public class Adresse implements Parcelable {
         this.HIGHWAY = HIGHWAY;
     }
 
-    public Adresse withHIGHWAY(Object HIGHWAY) {
-        this.HIGHWAY = HIGHWAY;
-        return this;
-    }
 
     /**
      *
@@ -1192,10 +1004,6 @@ public class Adresse implements Parcelable {
         this.POSTRESTANTE = POSTRESTANTE;
     }
 
-    public Adresse withPOSTRESTANTE(Object POSTRESTANTE) {
-        this.POSTRESTANTE = POSTRESTANTE;
-        return this;
-    }
 
     /**
      *
@@ -1215,10 +1023,6 @@ public class Adresse implements Parcelable {
         this.BEZEICHNUNG = BEZEICHNUNG;
     }
 
-    public Adresse withBEZEICHNUNG(Object BEZEICHNUNG) {
-        this.BEZEICHNUNG = BEZEICHNUNG;
-        return this;
-    }
 
     /**
      *
@@ -1238,10 +1042,6 @@ public class Adresse implements Parcelable {
         this.STATUS1 = STATUS1;
     }
 
-    public Adresse withSTATUS1(String STATUS1) {
-        this.STATUS1 = STATUS1;
-        return this;
-    }
 
     /**
      *
@@ -1261,10 +1061,6 @@ public class Adresse implements Parcelable {
         this.STATUS2 = STATUS2;
     }
 
-    public Adresse withSTATUS2(String STATUS2) {
-        this.STATUS2 = STATUS2;
-        return this;
-    }
 
     /**
      *
@@ -1284,10 +1080,6 @@ public class Adresse implements Parcelable {
         this.STATUS3 = STATUS3;
     }
 
-    public Adresse withSTATUS3(String STATUS3) {
-        this.STATUS3 = STATUS3;
-        return this;
-    }
 
     /**
      *
@@ -1307,10 +1099,6 @@ public class Adresse implements Parcelable {
         this.STATUS4 = STATUS4;
     }
 
-    public Adresse withSTATUS4(String STATUS4) {
-        this.STATUS4 = STATUS4;
-        return this;
-    }
 
     /**
      *
@@ -1330,10 +1118,6 @@ public class Adresse implements Parcelable {
         this.STATUS5 = STATUS5;
     }
 
-    public Adresse withSTATUS5(String STATUS5) {
-        this.STATUS5 = STATUS5;
-        return this;
-    }
 
     /**
      *
@@ -1353,10 +1137,6 @@ public class Adresse implements Parcelable {
         this.STATUS6 = STATUS6;
     }
 
-    public Adresse withSTATUS6(String STATUS6) {
-        this.STATUS6 = STATUS6;
-        return this;
-    }
 
     /**
      *
@@ -1376,10 +1156,6 @@ public class Adresse implements Parcelable {
         this.SACHBEARBEITER = SACHBEARBEITER;
     }
 
-    public Adresse withSACHBEARBEITER(Object SACHBEARBEITER) {
-        this.SACHBEARBEITER = SACHBEARBEITER;
-        return this;
-    }
 
     /**
      *
@@ -1399,10 +1175,6 @@ public class Adresse implements Parcelable {
         this.BASEROUTE = BASEROUTE;
     }
 
-    public Adresse withBASEROUTE(String BASEROUTE) {
-        this.BASEROUTE = BASEROUTE;
-        return this;
-    }
 
     /**
      *
@@ -1422,10 +1194,6 @@ public class Adresse implements Parcelable {
         this.ADDRESS1 = ADDRESS1;
     }
 
-    public Adresse withADDRESS1(Object ADDRESS1) {
-        this.ADDRESS1 = ADDRESS1;
-        return this;
-    }
 
     /**
      *
@@ -1445,10 +1213,6 @@ public class Adresse implements Parcelable {
         this.CRMADDRESSID = CRMADDRESSID;
     }
 
-    public Adresse withCRMADDRESSID(String CRMADDRESSID) {
-        this.CRMADDRESSID = CRMADDRESSID;
-        return this;
-    }
 
     /**
      *
@@ -1468,10 +1232,6 @@ public class Adresse implements Parcelable {
         this.ILN = ILN;
     }
 
-    public Adresse withILN(Object ILN) {
-        this.ILN = ILN;
-        return this;
-    }
 
     /**
      *
@@ -1491,10 +1251,6 @@ public class Adresse implements Parcelable {
         this.COUNTYCODE = COUNTYCODE;
     }
 
-    public Adresse withCOUNTYCODE(String COUNTYCODE) {
-        this.COUNTYCODE = COUNTYCODE;
-        return this;
-    }
 
     /**
      *
@@ -1514,10 +1270,6 @@ public class Adresse implements Parcelable {
         this.THIRDPARTY = THIRDPARTY;
     }
 
-    public Adresse withTHIRDPARTY(String THIRDPARTY) {
-        this.THIRDPARTY = THIRDPARTY;
-        return this;
-    }
 
     /**
      *
@@ -1537,10 +1289,6 @@ public class Adresse implements Parcelable {
         this.VESRKNZ = VESRKNZ;
     }
 
-    public Adresse withVESRKNZ(String VESRKNZ) {
-        this.VESRKNZ = VESRKNZ;
-        return this;
-    }
 
     /**
      *
@@ -1560,10 +1308,6 @@ public class Adresse implements Parcelable {
         this.BANKNR = BANKNR;
     }
 
-    public Adresse withBANKNR(String BANKNR) {
-        this.BANKNR = BANKNR;
-        return this;
-    }
 
     /**
      *
@@ -1583,10 +1327,6 @@ public class Adresse implements Parcelable {
         this.USGESPERRT = USGESPERRT;
     }
 
-    public Adresse withUSGESPERRT(String USGESPERRT) {
-        this.USGESPERRT = USGESPERRT;
-        return this;
-    }
 
     /**
      *
@@ -1606,10 +1346,6 @@ public class Adresse implements Parcelable {
         this.USSPERRGRUND = USSPERRGRUND;
     }
 
-    public Adresse withUSSPERRGRUND(String USSPERRGRUND) {
-        this.USSPERRGRUND = USSPERRGRUND;
-        return this;
-    }
 
     public String getObjectAsString() {
         return ToStringBuilder.reflectionToString(this);

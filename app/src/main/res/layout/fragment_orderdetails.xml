@@ -251,7 +251,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vertretername"
+                android:text="&lt;Vertreter>"
                 android:id="@+id/tvVertreterName"
                 android:ellipsize="end"
                 android:layout_below="@+id/tvVertreter1"
@@ -412,7 +412,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kundensuch- \nbezeichnung"
+                android:text="&lt;Kundensuchbezeichnung>"
                 android:id="@+id/tvKTxt"
                 android:ellipsize="end"
                 android:layout_below="@+id/lblKdNr"
@@ -423,7 +423,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Klasse"
+                android:text="&lt;Klasse>"
                 android:id="@+id/tvKlassifizierung"
                 android:ellipsize="end"
                 android:layout_alignParentRight="true"
@@ -491,7 +491,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adresszeile 1\nAdresszeile 2"
+                android:text="&lt;Adresse>"
                 android:id="@+id/tvLieferAdresse"
                 android:ellipsize="end"
                 android:layout_below="@+id/tvLieferAdresseNr"

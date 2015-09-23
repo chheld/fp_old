@@ -102,7 +102,7 @@ public  class OrderDetailsFragment extends Fragment {
 
             // Vertreter anzeigen
             tvVertr1.setText(mAuftrag.getVERTRETER1());
-            tvVertreterName.setText("Lädt ...");
+            //tvVertreterName.setText("Lädt ...");
             if(tvVertr1.getText().toString().trim().length()==0) {
                 tvVertr1.setVisibility(View.GONE);
             }
@@ -163,7 +163,7 @@ public  class OrderDetailsFragment extends Fragment {
 
             // Lieferung anzeigen
             tvLieferadresseNr.setText(mAuftrag.getADRNR2());
-            tvLieferadresse.setText("Lädt ...");
+            //tvLieferadresse.setText("Lädt ...");
             if(tvLieferadresseNr.getText().toString().trim().length()==0) {
                 tvLieferadresseNr.setVisibility(View.GONE);
             }
@@ -232,7 +232,6 @@ public  class OrderDetailsFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
                 Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
-                //if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 pbVertreter.setVisibility(View.GONE);
             }
         });
