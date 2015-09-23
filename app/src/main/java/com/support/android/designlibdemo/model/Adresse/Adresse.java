@@ -36,7 +36,7 @@ public class Adresse implements Parcelable {
     @SerializedName("POSTFACH")
     private Object POSTFACH;
     @SerializedName("PLZPOSTFACH")
-    private Object PLZPOSTFACH;
+    private String PLZPOSTFACH;
     @SerializedName("PLZORT")
     private String PLZORT;
     @SerializedName("ORT")
@@ -189,7 +189,7 @@ public class Adresse implements Parcelable {
      * @param SYSF
      * @param NAME3
      */
-    public Adresse(String IK, String SYSF, String CREATEDATE, Object MODIFYDATE, String CREATEUSER, String MODIFYUSER, String CID, String ADRESSENR, Object PERSONNR, String FIRMANR, String ANSCHRIFTNR, Object BEMERKUNG, String LASTEINM, Object POSTFACH, Object PLZPOSTFACH, String PLZORT, String ORT, String STRASSE, Object LAND, String STAAT, String LANDKNG, Object WERK, Object ABLST, Object EXTLAGER, String ZUSATZ1, Object ZUSATZ2, String VERWENDUNG1, String VERWENDUNG2, String VERWENDUNG3, String VERWENDUNG4, String VERWENDUNG5, Object NAME1, Object NAME2, Object NAME3, Object SPRACHKNZ, String SUBTYPE0, Object RURALROUTE, Object HIGHWAY, Object POSTRESTANTE, Object BEZEICHNUNG, String STATUS1, String STATUS2, String STATUS3, String STATUS4, String STATUS5, String STATUS6, Object SACHBEARBEITER, String BASEROUTE, Object ADDRESS1, String CRMADDRESSID, Object ILN, String COUNTYCODE, String THIRDPARTY, String VESRKNZ, String BANKNR, String USGESPERRT, String USSPERRGRUND) {
+    public Adresse(String IK, String SYSF, String CREATEDATE, Object MODIFYDATE, String CREATEUSER, String MODIFYUSER, String CID, String ADRESSENR, Object PERSONNR, String FIRMANR, String ANSCHRIFTNR, Object BEMERKUNG, String LASTEINM, Object POSTFACH, String PLZPOSTFACH, String PLZORT, String ORT, String STRASSE, Object LAND, String STAAT, String LANDKNG, Object WERK, Object ABLST, Object EXTLAGER, String ZUSATZ1, Object ZUSATZ2, String VERWENDUNG1, String VERWENDUNG2, String VERWENDUNG3, String VERWENDUNG4, String VERWENDUNG5, Object NAME1, Object NAME2, Object NAME3, Object SPRACHKNZ, String SUBTYPE0, Object RURALROUTE, Object HIGHWAY, Object POSTRESTANTE, Object BEZEICHNUNG, String STATUS1, String STATUS2, String STATUS3, String STATUS4, String STATUS5, String STATUS6, Object SACHBEARBEITER, String BASEROUTE, Object ADDRESS1, String CRMADDRESSID, Object ILN, String COUNTYCODE, String THIRDPARTY, String VESRKNZ, String BANKNR, String USGESPERRT, String USSPERRGRUND) {
         this.IK = IK;
         this.SYSF = SYSF;
         this.CREATEDATE = CREATEDATE;
@@ -627,7 +627,7 @@ public class Adresse implements Parcelable {
      * @return
      * The PLZPOSTFACH
      */
-    public Object getPLZPOSTFACH() {
+    public String getPLZPOSTFACH() {
         return PLZPOSTFACH;
     }
 
@@ -636,11 +636,11 @@ public class Adresse implements Parcelable {
      * @param PLZPOSTFACH
      * The PLZPOSTFACH
      */
-    public void setPLZPOSTFACH(Object PLZPOSTFACH) {
+    public void setPLZPOSTFACH(String PLZPOSTFACH) {
         this.PLZPOSTFACH = PLZPOSTFACH;
     }
 
-    public Adresse withPLZPOSTFACH(Object PLZPOSTFACH) {
+    public Adresse withPLZPOSTFACH(String PLZPOSTFACH) {
         this.PLZPOSTFACH = PLZPOSTFACH;
         return this;
     }

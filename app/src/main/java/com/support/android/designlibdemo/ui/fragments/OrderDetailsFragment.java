@@ -251,20 +251,14 @@ public  class OrderDetailsFragment extends Fragment {
                 try {
                     VolleyLog.v("Response:%n %s", response.toString(4));
                     JSONArray address = response.getJSONArray("address");
-                    JSONObject jsonA = address.getJSONObject(0);
                     Gson gson = new Gson();
                     Adresse adresse = gson.fromJson(address.getJSONObject(0).toString(), Adresse.class);
-                    String adr = adresse.getZUSATZ1() + "\n" +
-                            adresse.getZUSATZ2()+ "\n" +
-                            adresse.getSTRASSE()+ "\n" +
-                            adresse.getPLZORT()+ adresse.getORT();
-/*
-                    String vname = jsonA.getString("VORNAME");
-                    if (vname.equals("null")) vname = "";
-                    String nname = jsonA.getString("NAME");
-                    if (nname.equals("null")) nname = "";
-                    */
-                    tvLieferadresse.setText(adr);
+                    String adr1 = adresse.getZUSATZ1() + "\n";
+                    String adr2 = adresse.getZUSATZ2() + "\n";
+                    String str = adresse.getSTRASSE() + "\n";
+                    String plz = adresse.getPLZORT() + " ";
+                    String ort = adresse.getORT();
+                    tvLieferadresse.setText(adr1 + adr2 + str + plz + ort);
 
                     pbLieferadresse.setVisibility(View.GONE);
 
