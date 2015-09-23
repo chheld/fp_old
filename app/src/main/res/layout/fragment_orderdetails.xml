@@ -491,7 +491,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Adresszeile 1\nAdresszeile 2\nAdresszeile 3\nAdresszeile 4"
+                android:text="Adresszeile 1\nAdresszeile 2"
                 android:id="@+id/tvLieferAdresse"
                 android:ellipsize="end"
                 android:layout_below="@+id/tvLieferAdresseNr"

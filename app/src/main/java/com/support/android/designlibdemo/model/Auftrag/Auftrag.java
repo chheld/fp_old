@@ -15,6 +15,7 @@ import com.google.gson.annotations.SerializedName;
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -4711,12 +4712,8 @@ public class Auftrag implements Parcelable {
     }
 
 
-    public void setObjectAsString(String s) {
-        this.mObjectAsString = s;
-    }
-
     public String getObjectAsString() {
-        return this.mObjectAsString;
+        return ToStringBuilder.reflectionToString(this);
     }
 
     public Auftrag loadOrderDataByANR (Context c, String search) {

@@ -100,6 +100,7 @@ public  class OrderDetailsFragment extends Fragment {
 
             // Vertreter anzeigen
             tvVertr1.setText(mAuftrag.getVERTRETER1());
+            tvVertreterName.setText("Lädt ...");
             if(tvVertr1.getText().toString().trim().length()==0) {
                 tvVertr1.setVisibility(View.GONE);
             }
@@ -160,7 +161,7 @@ public  class OrderDetailsFragment extends Fragment {
 
             // Lieferung anzeigen
             tvLieferadresseNr.setText(mAuftrag.getADRNR2());
-            tvLieferadresse.setText("...");
+            tvLieferadresse.setText("Lädt ...");
             if(tvLieferadresseNr.getText().toString().trim().length()==0) {
                 tvLieferadresseNr.setVisibility(View.GONE);
             }
@@ -247,15 +248,17 @@ public  class OrderDetailsFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     VolleyLog.v("Response:%n %s", response.toString(4));
-                    //JSONArray address = response.getJSONArray("address");
-                    //JSONObject jsonA = contact.getJSONObject(0);
+                    JSONArray address = response.getJSONArray("address");
+                    JSONObject jsonA = address.getJSONObject(0);
+
+                    String adr = jsonA.getString("ZUSATZ1\n");
 /*
                     String vname = jsonA.getString("VORNAME");
                     if (vname.equals("null")) vname = "";
                     String nname = jsonA.getString("NAME");
                     if (nname.equals("null")) nname = "";
                     */
-                    tvLieferadresse.setText("LA gefunden");
+                    tvLieferadresse.setText(adr);
 
                     pbLieferadresse.setVisibility(View.GONE);
 
