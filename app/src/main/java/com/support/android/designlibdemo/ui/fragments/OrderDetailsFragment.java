@@ -17,8 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
+import com.support.android.designlibdemo.model.Adresse.Adresse;
 import com.support.android.designlibdemo.model.Auftrag.Auftrag;
 
 import org.json.JSONArray;
@@ -250,8 +252,12 @@ public  class OrderDetailsFragment extends Fragment {
                     VolleyLog.v("Response:%n %s", response.toString(4));
                     JSONArray address = response.getJSONArray("address");
                     JSONObject jsonA = address.getJSONObject(0);
-
-                    String adr = jsonA.getString("ZUSATZ1\n");
+                    Gson gson = new Gson();
+                    Adresse adresse = gson.fromJson(address.getJSONObject(0).toString(), Adresse.class);
+                    String adr = adresse.getZUSATZ1() + "\n" +
+                            adresse.getZUSATZ2()+ "\n" +
+                            adresse.getSTRASSE()+ "\n" +
+                            adresse.getPLZORT()+ adresse.getORT();
 /*
                     String vname = jsonA.getString("VORNAME");
                     if (vname.equals("null")) vname = "";
