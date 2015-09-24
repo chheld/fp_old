@@ -4,10 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.support.android.designlibdemo.R;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Kontakt implements Parcelable {
+
+    private int mIcon;      // Icon des Auftrags
 
     @SerializedName("IK")
     private String IK;
@@ -207,6 +210,18 @@ public class Kontakt implements Parcelable {
      *
      */
     public Kontakt() {
+        super();
+        this.mIcon = R.drawable.ic_contact;
+    }
+
+    /**
+     *
+     * @param a
+     * The PERSONNR
+     */
+    public Kontakt(String a) {
+        super();
+        this.PERSONNR = a;
     }
 
     protected Kontakt(Parcel in) {
@@ -290,6 +305,15 @@ public class Kontakt implements Parcelable {
             return new Kontakt[size];
         }
     };
+
+    /**
+     *
+     * @return
+     * The mIcon
+     */
+    public int getIcon() {
+        return mIcon;
+    }
 
     /**
      *

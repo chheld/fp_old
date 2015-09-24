@@ -49,7 +49,7 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
         viewHolder.tvPersonnr.setText(kontakt.getPERSONNR());
         viewHolder.tvKTxt.setText(kontakt.getKTXT());
         viewHolder.tvKdNr.setText(kontakt.getFIRMANR());
-        //viewHolder.ivIcon.setImageResource(kontakt.getIcon());
+        viewHolder.ivIcon.setImageResource(kontakt.getIcon());
         viewHolder.tvKonkaktname.setText(kontakt.getVORNAME() + " " +kontakt.getNAME());
         // Hier weitere Zuweisungen hinzufuegen
 
