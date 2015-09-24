@@ -3,7 +3,6 @@ package com.support.android.designlibdemo.model.Kontakt;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.support.android.designlibdemo.R;
 
@@ -14,160 +13,108 @@ public class Kontakt  implements Parcelable {
     private int mIcon;      // Icon des Auftrags
 
         @SerializedName("IK")
-        @Expose
         private String IK;
         @SerializedName("SYSF")
-        @Expose
         private String SYSF;
         @SerializedName("CREATEDATE")
-        @Expose
         private String CREATEDATE;
         @SerializedName("MODIFYDATE")
-        @Expose
         private String MODIFYDATE;
         @SerializedName("CREATEUSER")
-        @Expose
         private String CREATEUSER;
         @SerializedName("MODIFYUSER")
-        @Expose
         private String MODIFYUSER;
         @SerializedName("CID")
-        @Expose
         private String CID;
         @SerializedName("ADRESSENR")
-        @Expose
         private String ADRESSENR;
         @SerializedName("PERSONNR")
-        @Expose
         private String PERSONNR;
         @SerializedName("FIRMANR")
-        @Expose
         private String FIRMANR;
         @SerializedName("ANSCHRIFTNR")
-        @Expose
         private String ANSCHRIFTNR;
         @SerializedName("BEMERKUNG")
-        @Expose
         private Object BEMERKUNG;
         @SerializedName("LASTEINM")
-        @Expose
         private String LASTEINM;
         @SerializedName("BEMERKUNG_")
-        @Expose
         private Object BEMERKUNG_;
         @SerializedName("STATUS1")
-        @Expose
         private String STATUS1;
         @SerializedName("STATUS2")
-        @Expose
         private String STATUS2;
         @SerializedName("STATUS3")
-        @Expose
         private String STATUS3;
         @SerializedName("STATUS4")
-        @Expose
         private String STATUS4;
         @SerializedName("STATUS5")
-        @Expose
         private String STATUS5;
         @SerializedName("STATUS6")
-        @Expose
         private String STATUS6;
         @SerializedName("SACHBEARBEITER")
-        @Expose
         private Object SACHBEARBEITER;
         @SerializedName("NAME")
-        @Expose
         private String NAME;
         @SerializedName("VORNAME")
-        @Expose
         private String VORNAME;
         @SerializedName("GEBTAG")
-        @Expose
         private Object GEBTAG;
         @SerializedName("ANREDE")
-        @Expose
         private String ANREDE;
         @SerializedName("BRIEFANREDE")
-        @Expose
         private Object BRIEFANREDE;
         @SerializedName("TITEL")
-        @Expose
         private String TITEL;
         @SerializedName("SPRACHKNZ")
-        @Expose
         private String SPRACHKNZ;
         @SerializedName("ABTEILUNG")
-        @Expose
         private Object ABTEILUNG;
         @SerializedName("VERTRGRP")
-        @Expose
         private String VERTRGRP;
         @SerializedName("VERWENDUNG1")
-        @Expose
         private String VERWENDUNG1;
         @SerializedName("VERWENDUNG2")
-        @Expose
         private String VERWENDUNG2;
         @SerializedName("VERWENDUNG3")
-        @Expose
         private String VERWENDUNG3;
         @SerializedName("VERWENDUNG4")
-        @Expose
         private String VERWENDUNG4;
         @SerializedName("VERWENDUNG5")
-        @Expose
         private String VERWENDUNG5;
         @SerializedName("KURZNAME")
-        @Expose
         private Object KURZNAME;
         @SerializedName("CRMPERSONID")
-        @Expose
         private String CRMPERSONID;
         @SerializedName("MAILINGLOCKFLAG")
-        @Expose
         private String MAILINGLOCKFLAG;
         @SerializedName("INTERNALDISPATCHERSIGN")
-        @Expose
         private Object INTERNALDISPATCHERSIGN;
         @SerializedName("SEX")
-        @Expose
         private String SEX;
         @SerializedName("USGESPERRT")
-        @Expose
         private String USGESPERRT;
         @SerializedName("USSPERRGRUND")
-        @Expose
         private String USSPERRGRUND;
         @SerializedName("SACHBEARBEITER_")
-        @Expose
         private Object SACHBEARBEITER_;
         @SerializedName("NAME_")
-        @Expose
         private String NAME_;
         @SerializedName("VORNAME_")
-        @Expose
         private String VORNAME_;
         @SerializedName("ANREDE_")
-        @Expose
         private String ANREDE_;
         @SerializedName("BRIEFANREDE_")
-        @Expose
         private Object BRIEFANREDE_;
         @SerializedName("TITEL_")
-        @Expose
         private String TITEL_;
         @SerializedName("ABTEILUNG_")
-        @Expose
         private Object ABTEILUNG_;
         @SerializedName("KURZNAME_")
-        @Expose
         private Object KURZNAME_;
         @SerializedName("RELFIRMA_NAME")
-        @Expose
         private String RELFIRMA_NAME;
         @SerializedName("RELFIRMA_KTXT")
-        @Expose
         private String RELFIRMA_KTXT;
 
     protected Kontakt(Parcel in) {
