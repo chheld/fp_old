@@ -22,6 +22,7 @@ import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 import com.support.android.designlibdemo.provider.OrderSuggestionProvider;
 import com.support.android.designlibdemo.ui.fragments.AboutFragment;
+import com.support.android.designlibdemo.ui.fragments.ContactListFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
 
 import java.lang.reflect.Field;
@@ -193,8 +194,8 @@ public class ContactListActivity extends AppCompatActivity {
                 break;
 
             case "list":
-                //fragment = new OrderListFragment(this);
-                //fragment.setArguments(args);
+                fragment = new ContactListFragment(this);
+                fragment.setArguments(args);
                 break;
 
             default:
