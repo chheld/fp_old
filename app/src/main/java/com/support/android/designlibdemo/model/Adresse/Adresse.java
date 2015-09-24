@@ -615,9 +615,8 @@ public class Adresse implements Parcelable {
      * The ZUSATZ1
      */
     public String getZUSATZ1() {
-        String ret = ZUSATZ1;
-        if (ZUSATZ1.equals("null")) ret = "";
-        return ret;
+        if (ZUSATZ1.equals("null")) return "";
+        return ZUSATZ1;
     }
 
     /**
@@ -635,9 +634,8 @@ public class Adresse implements Parcelable {
      * The ZUSATZ2
      */
     public String getZUSATZ2() {
-        String ret = ZUSATZ2;
-        if (ZUSATZ2.equals("null")) ret = "";
-        return ret;
+        if (ZUSATZ2.equals("null")) return "";
+        return ZUSATZ2;
     }
 
     /**

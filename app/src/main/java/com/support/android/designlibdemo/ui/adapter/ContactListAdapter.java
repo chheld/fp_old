@@ -46,7 +46,7 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
         }
 
         // Populate the data into the template view using the data object
-        viewHolder.tvPersonnr.setText(kontakt.getPERSONNR());
+        viewHolder.tvPersonnr.setText(viewHolder.tvPersonnr.getText() + " " + kontakt.getPERSONNR());
         viewHolder.tvKTxt.setText(kontakt.getRELFIRMA_KTXT());
         viewHolder.tvKdNr.setText(kontakt.getFIRMANR());
         viewHolder.ivIcon.setImageResource(kontakt.getIcon());

@@ -557,9 +557,8 @@ public class Kontakt  implements Parcelable {
          * The NAME
          */
         public String getNAME() {
-            String v = NAME;
-            if (v.equals("null")) v="";
-            return v;
+            if (NAME.equals("null")) return NAME;
+            return NAME;
         }
 
         /**
@@ -577,9 +576,8 @@ public class Kontakt  implements Parcelable {
          * The VORNAME
          */
         public String getVORNAME() {
-            String v = VORNAME;
-            if (v.equals("null")) v="";
-            return v;
+            if (NAME.equals("null")) return NAME;
+            return NAME;
         }
 
         /**

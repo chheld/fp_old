@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvPersonnr"
-        android:text="999999"
+        android:text="Kontakt "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_toRightOf="@+id/ivKontakt"
         android:layout_alignParentTop="true" />

@@ -1,8 +1,6 @@
 package com.support.android.designlibdemo.model.Kontakt;
 
 import com.google.gson.Gson;
-import com.support.android.designlibdemo.model.Kontakt.Kontakt;
-import com.support.android.designlibdemo.model.Kontakt.KontaktlisteGeaendertListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +31,7 @@ public class Kontaktliste {
     }
 
 
-    public void add(JSONArray orders) {
+    public void add(JSONArray array) {
 
         //GsonBuilder gsonBuilder = new GsonBuilder();
         //gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss"); //Format of our JSON dates
@@ -41,8 +39,8 @@ public class Kontaktliste {
         Gson gson=new Gson();
         Kontakt kontakt;
         try {
-            for (int i = 0; i<=orders.length(); i++) {
-                kontakt = gson.fromJson(orders.getJSONObject(i).toString(), Kontakt.class);
+            for (int i = 0; i<=array.length(); i++) {
+                kontakt = gson.fromJson(array.getJSONObject(i).toString(), Kontakt.class);
                 this.add(kontakt);
             }
         } catch (JSONException e) {
