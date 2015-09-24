@@ -58,7 +58,7 @@ public class Adresse implements Parcelable {
     @SerializedName("ZUSATZ1")
     private String ZUSATZ1;
     @SerializedName("ZUSATZ2")
-    private Object ZUSATZ2;
+    private String ZUSATZ2;
     @SerializedName("VERWENDUNG1")
     private String VERWENDUNG1;
     @SerializedName("VERWENDUNG2")
@@ -127,126 +127,6 @@ public class Adresse implements Parcelable {
      *
      */
     public Adresse() {
-    }
-
-    /**
-     *
-     * @param RURALROUTE
-     * @param HIGHWAY
-     * @param WERK
-     * @param ORT
-     * @param STATUS4
-     * @param STATUS5
-     * @param STATUS2
-     * @param ADDRESS1
-     * @param STATUS3
-     * @param ILN
-     * @param STATUS6
-     * @param COUNTYCODE
-     * @param LASTEINM
-     * @param SPRACHKNZ
-     * @param MODIFYUSER
-     * @param VERWENDUNG4
-     * @param VERWENDUNG3
-     * @param IK
-     * @param VERWENDUNG5
-     * @param USSPERRGRUND
-     * @param VERWENDUNG2
-     * @param VERWENDUNG1
-     * @param BANKNR
-     * @param PLZPOSTFACH
-     * @param SUBTYPE0
-     * @param SACHBEARBEITER
-     * @param BEMERKUNG
-     * @param MODIFYDATE
-     * @param CRMADDRESSID
-     * @param ZUSATZ1
-     * @param ZUSATZ2
-     * @param ANSCHRIFTNR
-     * @param CREATEUSER
-     * @param LANDKNG
-     * @param FIRMANR
-     * @param VESRKNZ
-     * @param CID
-     * @param BASEROUTE
-     * @param USGESPERRT
-     * @param EXTLAGER
-     * @param ABLST
-     * @param STATUS1
-     * @param POSTFACH
-     * @param POSTRESTANTE
-     * @param STAAT
-     * @param PERSONNR
-     * @param THIRDPARTY
-     * @param NAME2
-     * @param STRASSE
-     * @param CREATEDATE
-     * @param NAME1
-     * @param ADRESSENR
-     * @param LAND
-     * @param PLZORT
-     * @param BEZEICHNUNG
-     * @param SYSF
-     * @param NAME3
-     */
-    public Adresse(String IK, String SYSF, String CREATEDATE, Object MODIFYDATE, String CREATEUSER, String MODIFYUSER, String CID, String ADRESSENR, Object PERSONNR, String FIRMANR, String ANSCHRIFTNR, Object BEMERKUNG, String LASTEINM, Object POSTFACH, String PLZPOSTFACH, String PLZORT, String ORT, String STRASSE, Object LAND, String STAAT, String LANDKNG, Object WERK, Object ABLST, Object EXTLAGER, String ZUSATZ1, Object ZUSATZ2, String VERWENDUNG1, String VERWENDUNG2, String VERWENDUNG3, String VERWENDUNG4, String VERWENDUNG5, Object NAME1, Object NAME2, Object NAME3, Object SPRACHKNZ, String SUBTYPE0, Object RURALROUTE, Object HIGHWAY, Object POSTRESTANTE, Object BEZEICHNUNG, String STATUS1, String STATUS2, String STATUS3, String STATUS4, String STATUS5, String STATUS6, Object SACHBEARBEITER, String BASEROUTE, Object ADDRESS1, String CRMADDRESSID, Object ILN, String COUNTYCODE, String THIRDPARTY, String VESRKNZ, String BANKNR, String USGESPERRT, String USSPERRGRUND) {
-        this.IK = IK;
-        this.SYSF = SYSF;
-        this.CREATEDATE = CREATEDATE;
-        this.MODIFYDATE = MODIFYDATE;
-        this.CREATEUSER = CREATEUSER;
-        this.MODIFYUSER = MODIFYUSER;
-        this.CID = CID;
-        this.ADRESSENR = ADRESSENR;
-        this.PERSONNR = PERSONNR;
-        this.FIRMANR = FIRMANR;
-        this.ANSCHRIFTNR = ANSCHRIFTNR;
-        this.BEMERKUNG = BEMERKUNG;
-        this.LASTEINM = LASTEINM;
-        this.POSTFACH = POSTFACH;
-        this.PLZPOSTFACH = PLZPOSTFACH;
-        this.PLZORT = PLZORT;
-        this.ORT = ORT;
-        this.STRASSE = STRASSE;
-        this.LAND = LAND;
-        this.STAAT = STAAT;
-        this.LANDKNG = LANDKNG;
-        this.WERK = WERK;
-        this.ABLST = ABLST;
-        this.EXTLAGER = EXTLAGER;
-        this.ZUSATZ1 = ZUSATZ1;
-        this.ZUSATZ2 = ZUSATZ2;
-        this.VERWENDUNG1 = VERWENDUNG1;
-        this.VERWENDUNG2 = VERWENDUNG2;
-        this.VERWENDUNG3 = VERWENDUNG3;
-        this.VERWENDUNG4 = VERWENDUNG4;
-        this.VERWENDUNG5 = VERWENDUNG5;
-        this.NAME1 = NAME1;
-        this.NAME2 = NAME2;
-        this.NAME3 = NAME3;
-        this.SPRACHKNZ = SPRACHKNZ;
-        this.SUBTYPE0 = SUBTYPE0;
-        this.RURALROUTE = RURALROUTE;
-        this.HIGHWAY = HIGHWAY;
-        this.POSTRESTANTE = POSTRESTANTE;
-        this.BEZEICHNUNG = BEZEICHNUNG;
-        this.STATUS1 = STATUS1;
-        this.STATUS2 = STATUS2;
-        this.STATUS3 = STATUS3;
-        this.STATUS4 = STATUS4;
-        this.STATUS5 = STATUS5;
-        this.STATUS6 = STATUS6;
-        this.SACHBEARBEITER = SACHBEARBEITER;
-        this.BASEROUTE = BASEROUTE;
-        this.ADDRESS1 = ADDRESS1;
-        this.CRMADDRESSID = CRMADDRESSID;
-        this.ILN = ILN;
-        this.COUNTYCODE = COUNTYCODE;
-        this.THIRDPARTY = THIRDPARTY;
-        this.VESRKNZ = VESRKNZ;
-        this.BANKNR = BANKNR;
-        this.USGESPERRT = USGESPERRT;
-        this.USSPERRGRUND = USSPERRGRUND;
     }
 
     protected Adresse(Parcel in) {
@@ -575,8 +455,7 @@ public class Adresse implements Parcelable {
      * @return
      * The PLZORT
      */
-    public String getPLZORT() {
-        return PLZORT;
+    public String getPLZORT() {return PLZORT;
     }
 
     /**
@@ -593,8 +472,7 @@ public class Adresse implements Parcelable {
      * @return
      * The ORT
      */
-    public String getORT() {
-        return ORT;
+    public String getORT() {return ORT;
     }
 
     /**
@@ -611,8 +489,7 @@ public class Adresse implements Parcelable {
      * @return
      * The STRASSE
      */
-    public String getSTRASSE() {
-        return STRASSE;
+    public String getSTRASSE() {return STRASSE;
     }
 
     /**
@@ -738,7 +615,9 @@ public class Adresse implements Parcelable {
      * The ZUSATZ1
      */
     public String getZUSATZ1() {
-        return ZUSATZ1;
+        String ret = ZUSATZ1;
+        if (ZUSATZ1.equals("null")) ret = "";
+        return ret;
     }
 
     /**
@@ -755,8 +634,10 @@ public class Adresse implements Parcelable {
      * @return
      * The ZUSATZ2
      */
-    public Object getZUSATZ2() {
-        return ZUSATZ2;
+    public String getZUSATZ2() {
+        String ret = ZUSATZ2;
+        if (ZUSATZ2.equals("null")) ret = "";
+        return ret;
     }
 
     /**
@@ -764,7 +645,7 @@ public class Adresse implements Parcelable {
      * @param ZUSATZ2
      * The ZUSATZ2
      */
-    public void setZUSATZ2(Object ZUSATZ2) {
+    public void setZUSATZ2(String ZUSATZ2) {
         this.ZUSATZ2 = ZUSATZ2;
     }
 

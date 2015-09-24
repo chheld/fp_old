@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bemerkung"
-                android:id="@+id/tvBemerkung"
+                android:id="@+id/tvKontaktname"
                 android:ellipsize="end"
                 android:layout_below="@+id/lblAuftrag"
                 android:layout_alignLeft="@+id/lblAuftrag"
@@ -81,9 +81,9 @@
                 android:text="Bestellnummer"
                 android:id="@+id/tvBestellnummer"
                 android:ellipsize="end"
-                android:layout_below="@+id/tvBemerkung"
-                android:layout_alignLeft="@+id/tvBemerkung"
-                android:layout_alignStart="@+id/tvBemerkung"
+                android:layout_below="@+id/tvKontaktname"
+                android:layout_alignLeft="@+id/tvKontaktname"
+                android:layout_alignStart="@+id/tvKontaktname"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp" />
 
@@ -390,7 +390,7 @@
 
             <ImageView
                 android:layout_height="wrap_content"
-                android:id="@+id/ivCustomer"
+                android:id="@+id/ivKontakt"
                 android:src="@drawable/ic_organization2"
                 android:layout_width="25dp"
                 android:layout_alignParentTop="true"
@@ -402,11 +402,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kunde"
-                android:id="@+id/lblKdNr"
+                android:id="@+id/tvKdNr"
                 android:ellipsize="end"
-                android:layout_alignBottom="@+id/ivCustomer"
-                android:layout_toRightOf="@+id/ivCustomer"
-                android:layout_toEndOf="@+id/ivCustomer"
+                android:layout_alignBottom="@+id/ivKontakt"
+                android:layout_toRightOf="@+id/ivKontakt"
+                android:layout_toEndOf="@+id/ivKontakt"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -415,8 +415,8 @@
                 android:text="&lt;Kundensuchbezeichnung>"
                 android:id="@+id/tvKTxt"
                 android:ellipsize="end"
-                android:layout_below="@+id/lblKdNr"
-                android:layout_alignLeft="@+id/lblKdNr"
+                android:layout_below="@+id/tvKdNr"
+                android:layout_alignLeft="@+id/tvKdNr"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="5dp" />
 
@@ -428,7 +428,7 @@
                 android:ellipsize="end"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignBaseline="@+id/lblKdNr" />
+                android:layout_alignBaseline="@+id/tvKdNr" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -436,9 +436,9 @@
                 android:text="99999999"
                 android:id="@+id/tvKdNr"
                 android:ellipsize="end"
-                android:layout_alignTop="@+id/lblKdNr"
-                android:layout_toRightOf="@+id/lblKdNr"
-                android:layout_toEndOf="@+id/lblKdNr"
+                android:layout_alignTop="@+id/tvKdNr"
+                android:layout_toRightOf="@+id/tvKdNr"
+                android:layout_toEndOf="@+id/tvKdNr"
                 android:layout_marginLeft="5dp"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 

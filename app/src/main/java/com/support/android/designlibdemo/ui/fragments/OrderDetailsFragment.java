@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -30,11 +29,14 @@ import org.json.JSONObject;
 public  class OrderDetailsFragment extends Fragment {
 
     private AppController mAppController = AppController.getInstance();
+
     private Auftrag mAuftrag;
 
     private Context mContext;
+
     private TextView tvVertreterName;
     private ProgressBar pbVertreter;
+
     private TextView tvLieferadresse;
     private ProgressBar pbLieferadresse;
 
@@ -47,7 +49,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         // Auftragsdaten anzeigen
         TextView tvANr = (TextView) view.findViewById(R.id.tvANr);
-        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvBemerkung);
+        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvKontaktname);
         TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
         TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
 
@@ -235,7 +237,7 @@ public  class OrderDetailsFragment extends Fragment {
                 pbVertreter.setVisibility(View.GONE);
             }
         });
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -279,7 +281,7 @@ public  class OrderDetailsFragment extends Fragment {
                 pbLieferadresse.setVisibility(View.GONE);
             }
         });
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 }

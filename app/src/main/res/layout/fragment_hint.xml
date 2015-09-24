@@ -3,16 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text="Die Ansicht ist leer."
-        android:id="@+id/tvHinweis"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:singleLine="false"
-        android:layout_centerInParent="true"
-        android:layout_margin="32dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <TextView
+            android:layout_width="264dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:text="Die Ansicht ist leer."
+            android:id="@+id/tvHinweis"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:singleLine="false"
+            android:layout_centerInParent="true"
+            android:layout_margin="32dp" />
+    </ScrollView>
 
 </RelativeLayout>

@@ -2,11 +2,11 @@ package com.support.android.designlibdemo.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog.Builder;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -151,7 +150,7 @@ public class OrderListFragment extends Fragment {
             // start http requests
             mSearchRequestCounter = 0;
             callAPIOrdersByANR("http://222.222.222.60/api/orders/anr?where=" + search);
-            Auftrag auftrag = new Auftrag();
+            //Auftrag auftrag = new Auftrag();
             //auftrag.loadOrderDataByANR(mContext,"http://222.222.222.60/api/orders/anr?where=" + search);
             callAPIOrdersByMNR("http://222.222.222.60/api/orders/mnr/" + search);
             callAPIOrdersByKTXT("http://222.222.222.60/api/orders/ktxt?where=" + search + "&fields=anr,mnr,ktxt,bemerkung,komm,kw,kj");
@@ -175,13 +174,11 @@ public class OrderListFragment extends Fragment {
                     mSearchRequestCounter--;
                     if (mSearchRequestCounter < 1) {
                         progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
-                        Toast.makeText(mContext, orders.length() + " Eintraege ueber ANR gefunden", Toast.LENGTH_SHORT).show();
-                        //DialogBox dialogBox = new DialogBox(mContext, "Ergebnis", orders.toString());
-                        //dialogBox.show();
-                        //if (mSearchResults!=0) mAuftragsliste.Clear();
+                        Toast.makeText(mContext, orders.length() + " Einträge über ANR gefunden", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 }
             }
         }, new Response.ErrorListener() {
@@ -196,9 +193,7 @@ public class OrderListFragment extends Fragment {
                 if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
             }
         });
-        //Set a retry policy in case of SocketTimeout & ConnectionTimeout Exceptions.
-        //Volley does retry for you if you have specified the policy.
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -220,11 +215,11 @@ public class OrderListFragment extends Fragment {
                     mSearchRequestCounter--;
                     if (mSearchRequestCounter < 1) {
                         progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
-                        Toast.makeText(mContext, orders.length() + " Eintraege ueber MNR gefunden", Toast.LENGTH_SHORT).show();
-                        //if (mSearchResults!=0) mAuftragsliste.Clear();
+                        Toast.makeText(mContext, orders.length() + " Einträge über MNR gefunden", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 }
             }
         }, new Response.ErrorListener() {
@@ -237,9 +232,7 @@ public class OrderListFragment extends Fragment {
                 if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
             }
         });
-        //Set a retry policy in case of SocketTimeout & ConnectionTimeout Exceptions.
-        //Volley does retry for you if you have specified the policy.
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -261,11 +254,11 @@ public class OrderListFragment extends Fragment {
                     mSearchRequestCounter--;
                     if (mSearchRequestCounter < 1) {
                         progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
-                        Toast.makeText(mContext, orders.length() + " Eintraege ueber KTXT gefunden", Toast.LENGTH_SHORT).show();
-                        //if (mSearchResults!=0) mAuftragsliste.Clear();
+                        Toast.makeText(mContext, orders.length() + " Einträge über KTXT gefunden", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 }
             }
         }, new Response.ErrorListener() {
@@ -278,9 +271,7 @@ public class OrderListFragment extends Fragment {
                 if (mSearchRequestCounter < 1) progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
             }
         });
-        //Set a retry policy in case of SocketTimeout & ConnectionTimeout Exceptions.
-        //Volley does retry for you if you have specified the policy.
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
         AppController.getInstance().addToRequestQueue(req);
     }
 }

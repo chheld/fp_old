@@ -9,25 +9,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.support.android.designlibdemo.R;
-import com.support.android.designlibdemo.model.Auftrag.Auftrag;
+import com.support.android.designlibdemo.model.Kontakt.Kontakt;
 
 import java.util.ArrayList;
 
-/**
- * Created by held on 13.01.2015.
- * https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
- */
-public class OrderDetailsAdapter extends ArrayAdapter<Auftrag> {
+public class ContactListAdapter extends ArrayAdapter<Kontakt> {
 
-    public OrderDetailsAdapter(Context c, ArrayList<Auftrag> o) {
-
-        super(c, R.layout.fragment_orderdetails, o);
+    public ContactListAdapter(Context c, ArrayList<Kontakt> o) {
+         super(c, R.layout.item_orderlist, o);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Auftrag ord = getItem(position);
+        Kontakt kontakt = getItem(position);
 
         // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder; // view lookup cache stored in tag
@@ -35,25 +30,27 @@ public class OrderDetailsAdapter extends ArrayAdapter<Auftrag> {
         if (convertView == null) {
 
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.fragment_orderdetails, parent, false);
+            convertView = inflater.inflate(R.layout.item_contactlist, parent, false);
 
             // Viewholder an View anbinden
             viewHolder = new ViewHolder();
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivKontakt);
             viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
             viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
+            viewHolder.tvPersonnr = (TextView) convertView.findViewById(R.id.tvPersonnr);
+            viewHolder.tvKonkaktname = (TextView) convertView.findViewById(R.id.tvKontaktname);
             // Hier weitere Anbindungen hinzufuegen
             convertView.setTag(viewHolder);
-        }
-        else {
-
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // Populate the data into the template view using the data object
-        viewHolder.tvKTxt.setText(ord.getKTXT());
-        viewHolder.tvKdNr.setText(ord.getMNR());
-        viewHolder.ivIcon.setImageResource(ord.getIcon());
+        viewHolder.tvPersonnr.setText(kontakt.getPERSONNR());
+        viewHolder.tvKTxt.setText(kontakt.getKTXT());
+        viewHolder.tvKdNr.setText(kontakt.getFIRMANR());
+        //viewHolder.ivIcon.setImageResource(kontakt.getIcon());
+        viewHolder.tvKonkaktname.setText(kontakt.getVORNAME() + " " +kontakt.getNAME());
         // Hier weitere Zuweisungen hinzufuegen
 
         return convertView;
@@ -61,10 +58,11 @@ public class OrderDetailsAdapter extends ArrayAdapter<Auftrag> {
 
     // View lookup cache
     private static class ViewHolder {
-
         ImageView ivIcon;
         TextView tvKdNr;
         TextView tvKTxt;
+        TextView tvPersonnr;
+        TextView tvKonkaktname;
         // Hier weitere Holder-Eigenschaften hinzufuegen
     }
 
