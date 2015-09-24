@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -238,6 +239,7 @@ public  class OrderDetailsFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -282,6 +284,7 @@ public  class OrderDetailsFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 }

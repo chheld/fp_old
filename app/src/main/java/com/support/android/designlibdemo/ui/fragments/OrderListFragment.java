@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -194,6 +195,7 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -233,6 +235,7 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 
@@ -272,6 +275,7 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 }

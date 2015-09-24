@@ -3,7 +3,6 @@ package com.support.android.designlibdemo;
 import android.app.Application;
 import android.text.TextUtils;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
@@ -64,7 +63,7 @@ public class AppController extends Application {
         // set the default tag if tag is empty
         req.setTag(TextUtils.isEmpty(tag) ? VOLLEY_PATTERNS : tag);
         VolleyLog.d("Adding request to queue: %s", req.getUrl());
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         getRequestQueue().add(req);
     }
 

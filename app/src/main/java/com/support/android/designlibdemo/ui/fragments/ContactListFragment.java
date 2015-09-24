@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -141,7 +142,7 @@ public class ContactListFragment extends Fragment {
                     mProgressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Kontakt kontakt = (Kontakt) parent.getItemAtPosition(position);
-                    //Toast.makeText(mContext, auftrag.getANR(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, kontakt.getPERSONNR(), Toast.LENGTH_SHORT).show();
                     //TODO: speichern des Auftrags in letzte Vorgänge
 
                     Intent intent = new Intent(mContext, ContactListActivity.class);
@@ -198,6 +199,7 @@ public class ContactListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         AppController.getInstance().addToRequestQueue(req);
     }
 }
