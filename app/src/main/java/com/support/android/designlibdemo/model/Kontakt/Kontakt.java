@@ -2,6 +2,7 @@ package com.support.android.designlibdemo.model.Kontakt;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 import com.support.android.designlibdemo.R;
@@ -557,7 +558,8 @@ public class Kontakt  implements Parcelable {
          * The NAME
          */
         public String getNAME() {
-            if (NAME.equals("null")) return NAME;
+            if (TextUtils.isEmpty(NAME)) return "";
+            if (NAME.equals("null")) return "";
             return NAME;
         }
 
@@ -576,8 +578,9 @@ public class Kontakt  implements Parcelable {
          * The VORNAME
          */
         public String getVORNAME() {
-            if (NAME.equals("null")) return NAME;
-            return NAME;
+            if (TextUtils.isEmpty(VORNAME)) return "";
+            if (VORNAME.equals("null")) return VORNAME;
+            return VORNAME;
         }
 
         /**

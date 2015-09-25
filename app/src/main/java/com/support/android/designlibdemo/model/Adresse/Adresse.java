@@ -2,7 +2,10 @@ package com.support.android.designlibdemo.model.Adresse;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class Adresse implements Parcelable {
@@ -615,6 +618,7 @@ public class Adresse implements Parcelable {
      * The ZUSATZ1
      */
     public String getZUSATZ1() {
+        if (TextUtils.isEmpty(ZUSATZ1)) return "";
         if (ZUSATZ1.equals("null")) return "";
         return ZUSATZ1;
     }
@@ -634,6 +638,7 @@ public class Adresse implements Parcelable {
      * The ZUSATZ2
      */
     public String getZUSATZ2() {
+        if (TextUtils.isEmpty(ZUSATZ2)) return "";
         if (ZUSATZ2.equals("null")) return "";
         return ZUSATZ2;
     }
