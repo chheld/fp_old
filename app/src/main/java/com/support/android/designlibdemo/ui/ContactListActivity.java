@@ -138,7 +138,7 @@ public class ContactListActivity extends AppCompatActivity {
             Bundle extras = intent.getExtras();
             String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
             String query = String.valueOf(extras.get(SearchManager.QUERY));
-            suggestions.saveRecentQuery(query, query);
+            suggestions.saveRecentQuery(query, "in Kontakten");
 
             //Toast.makeText(this, "query: " + query + " user_query: " + userQuery, Toast.LENGTH_SHORT).show(); // TEST Meldung
 

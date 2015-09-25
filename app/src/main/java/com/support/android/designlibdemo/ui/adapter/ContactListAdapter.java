@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ContactListAdapter extends ArrayAdapter<Kontakt> {
 
     public ContactListAdapter(Context c, ArrayList<Kontakt> o) {
-         super(c, R.layout.item_orderlist, o);
+         super(c, R.layout.item_contactlist, o);
     }
 
     @Override
@@ -40,13 +40,15 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
             viewHolder.tvPersonnr = (TextView) convertView.findViewById(R.id.tvPersonnr);
             viewHolder.tvKonkaktname = (TextView) convertView.findViewById(R.id.tvKontaktname);
             // Hier weitere Anbindungen hinzufuegen
+
             convertView.setTag(viewHolder);
-        } else {
+        } else
+        {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // Populate the data into the template view using the data object
-        viewHolder.tvPersonnr.setText(viewHolder.tvPersonnr.getText() + " " + kontakt.getPERSONNR());
+        viewHolder.tvPersonnr.setText(kontakt.getPERSONNR());
         viewHolder.tvKTxt.setText(kontakt.getRELFIRMA_KTXT());
         viewHolder.tvKdNr.setText(kontakt.getFIRMANR());
         viewHolder.ivIcon.setImageResource(kontakt.getIcon());
