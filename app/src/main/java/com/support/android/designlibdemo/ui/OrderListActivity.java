@@ -50,14 +50,18 @@ public class OrderListActivity extends AppCompatActivity
     private SearchRecentSuggestions suggestions;
     private SearchView searchView;
     private TextView tvHinweis;
-    private AppController mAppController = AppController.getInstance();
+    private AppController mAppController;
     private Context mContext;
+
+    public OrderListActivity() {
+        mAppController = AppController.getInstance();
+        mContext=this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        mContext=this;
         setContentView(R.layout.activity_orderlist);
 
         tvHinweis = (TextView) findViewById(R.id.tvHinweis);
@@ -97,19 +101,6 @@ public class OrderListActivity extends AppCompatActivity
 
         } catch (Exception e) {
         }
-/*
-        // test-Vorschläge erzeugen für Such-Historie
-        suggestions.clearHistory();
-        String query;
-        query = OrderSuggestionProvider.generateRandomSuggestion();
-        suggestions.saveRecentQuery(query, "generierter Test-Eintrag");
-        query = OrderSuggestionProvider.generateRandomSuggestion();
-        suggestions.saveRecentQuery(query, "generierter Test-Eintrag");
-*/
-        //showFragment("hint", null);  // Hinweis bei leerer Liste anzeigen
-
-        //if (isPingable(WEB_SERVER_ADDRESS)==true)
-        //    Toast.makeText(this, "isPingable=true", Toast.LENGTH_SHORT).show(); // TEST Meldung
 
         //TODO: fertigstellen in eigener Klasse
         checkServerConnection checkServerConnection = new checkServerConnection();
@@ -173,7 +164,7 @@ public class OrderListActivity extends AppCompatActivity
             args.putString("search", query);
             getSupportActionBar().setSubtitle("Suche '" + query + "'");
 
-            showFragment("orderlist", args); // Fragment OrdersList anzeigen
+            showFragment("list", args); // Fragment OrdersList anzeigen
         }
     }
 
@@ -215,7 +206,7 @@ public class OrderListActivity extends AppCompatActivity
             case "hint":
                 fragment = new HintFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("hint","Um Aufträge anzuzeigen,\nnutzen Sie die Suchfunktion.");
+                bundle.putString("hint","Hinweis");
                 fragment.setArguments(bundle);
                 break;
 
@@ -223,7 +214,7 @@ public class OrderListActivity extends AppCompatActivity
                 fragment = new AboutFragment();
                 break;
 
-            case "orderlist":
+            case "list":
                 fragment = new OrderListFragment(this);
                 fragment.setArguments(args);
                 break;
@@ -265,19 +256,6 @@ public class OrderListActivity extends AppCompatActivity
             } catch (IOException e) {
                 return false;
             }
-        }
-        return false;
-    }
-
-    public Boolean isConnectedToServer(String url, int timeout) {
-        try{
-            URL myUrl = new URL(url);
-            URLConnection connection = myUrl.openConnection();
-            connection.setConnectTimeout(timeout);
-            connection.connect();
-            return true;
-        } catch (Exception e) {
-            // Handle your exceptions
         }
         return false;
     }
@@ -341,29 +319,41 @@ public class OrderListActivity extends AppCompatActivity
 
             //showEditDialog();
         }
+
+        private void showVPN() {
+
+            try {
+                PackageManager manager = mContext.getPackageManager();
+                Intent intent = manager.getLaunchIntentForPackage("app.openconnect");
+                //intent.putExtra("Fp", "upb ssl"); // zum direkten Öffenen der FP-Einstellungen, sonst weglassen
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: wirklich notwendig ?
+                mContext.startActivity(intent);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                Toast.makeText(mContext, "VPN App ist nicht installiert", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private Boolean isConnectedToServer(String url, int timeout) {
+            try{
+                URL myUrl = new URL(url);
+                URLConnection connection = myUrl.openConnection();
+                connection.setConnectTimeout(timeout);
+                connection.connect();
+                return true;
+            } catch (Exception e) {
+                // Handle your exceptions
+            }
+            return false;
+        }
     }
 
     @Override
     public void onFinishEditDialog(String inputText) {
 
         Log.d("DIALOGRESULT", "Input value from DialogFragment " + inputText);
-    }
-
-    private void showVPN() {
-
-    try {
-        PackageManager manager = this.getPackageManager();
-        Intent intent = manager.getLaunchIntentForPackage("app.openconnect");
-        //intent.putExtra("Fp", "upb ssl"); // zum direkten Öffenen der FP-Einstellungen, sonst weglassen
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: wirklich notwendig ?
-        this.startActivity(intent);
-    }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            Toast.makeText(mContext, "VPN App ist nicht installiert", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     private void showEditDialog() {
@@ -380,7 +370,4 @@ public class OrderListActivity extends AppCompatActivity
         newFragment.show(ft, "dialog");
 
     }
-
-
-
 }

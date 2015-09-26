@@ -1,5 +1,7 @@
 package com.support.android.designlibdemo.ui;
 
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.app.SearchManager;
@@ -12,11 +14,13 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
@@ -26,6 +30,8 @@ import com.support.android.designlibdemo.ui.fragments.ContactListFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
 
 import java.lang.reflect.Field;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class ContactListActivity extends AppCompatActivity {
 
@@ -33,14 +39,19 @@ public class ContactListActivity extends AppCompatActivity {
     private SearchRecentSuggestions suggestions;
     private SearchView searchView;
     private TextView tvHinweis;
-    private AppController mAppController = AppController.getInstance();
+    private AppController mAppController;
+    private Context mContext;
 
+    public ContactListActivity() {
+        mAppController = AppController.getInstance();
+        mContext=this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contacts);
+        setContentView(R.layout.activity_contactlist);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_contacts_toolbar);
         if (toolbar != null) {
@@ -77,16 +88,9 @@ public class ContactListActivity extends AppCompatActivity {
 
         } catch (Exception e) {
         }
-/*
-        // test-Vorschläge erzeugen für Such-Historie
-        suggestions.clearHistory();
-        String query;
-        query = OrderSuggestionProvider.generateRandomSuggestion();
-        suggestions.saveRecentQuery(query, "generierter Test-Eintrag");
-        query = OrderSuggestionProvider.generateRandomSuggestion();
-        suggestions.saveRecentQuery(query, "generierter Test-Eintrag");
-*/
-        showFragment("hint", null);  // Hinweis bei leerer Liste anzeigen
+
+        checkServerConnection checkServerConnection = new checkServerConnection();
+        checkServerConnection.execute("qw1");
     }
 
     @Override
@@ -145,6 +149,7 @@ public class ContactListActivity extends AppCompatActivity {
             Bundle args = new Bundle(); // Uebergabe-Parameter für Fragment erstellen
             args.putString("search", query);
             getSupportActionBar().setSubtitle("Suche  '" + query + "'");
+
             showFragment("list", args); // Fragment OrdersList anzeigen
         }
     }
@@ -185,7 +190,7 @@ public class ContactListActivity extends AppCompatActivity {
             case "hint":
                 fragment = new HintFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("hint","Um Kontakte anzuzeigen, benutzen Sie die Suchfunktion am oberen Bildschirmrand.");
+                bundle.putString("hint","Hinweis");
                 fragment.setArguments(bundle);
                 break;
 
@@ -212,5 +217,65 @@ public class ContactListActivity extends AppCompatActivity {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
         mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+    }
+
+    public class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            String s = params[0];
+            Boolean ret = false;
+            //isURLReachable(); //ok
+            ret  = isConnectedToServer("http://222.222.222.60", 2000);
+            Log.d("isConnectedToServer", ret.toString());
+            publishProgress(ret);
+            return ret;
+        }
+        @Override
+        protected void onProgressUpdate(Boolean... values) {
+            Log.d("isConnectedToServer", "onProgressUpdate(): " + values[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean res) {
+
+            super.onPostExecute(res);
+            Log.d("isConnectedToServer", "onPostExecute(): " + res);
+            if (res==false) {
+                Toast.makeText(mContext, "Keine Serververbindung", Toast.LENGTH_SHORT).show();
+                showVPN();
+            }
+
+            //showEditDialog();
+        }
+
+        private void showVPN() {
+
+            try {
+                PackageManager manager = mContext.getPackageManager();
+                Intent intent = manager.getLaunchIntentForPackage("app.openconnect");
+                //intent.putExtra("Fp", "upb ssl"); // zum direkten Öffenen der FP-Einstellungen, sonst weglassen
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: wirklich notwendig ?
+                mContext.startActivity(intent);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                Toast.makeText(mContext, "VPN App ist nicht installiert", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private Boolean isConnectedToServer(String url, int timeout) {
+            try{
+                URL myUrl = new URL(url);
+                URLConnection connection = myUrl.openConnection();
+                connection.setConnectTimeout(timeout);
+                connection.connect();
+                return true;
+            } catch (Exception e) {
+                // Handle your exceptions
+            }
+            return false;
+        }
     }
 }

@@ -37,7 +37,7 @@ public class OrderListAdapter extends ArrayAdapter<Auftrag> {
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivKontakt);
             viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
             viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
-            viewHolder.tvANr = (TextView) convertView.findViewById(R.id.tvPersonnr);
+            viewHolder.tvANr = (TextView) convertView.findViewById(R.id.tvANr);
             viewHolder.tvBemerkung = (TextView) convertView.findViewById(R.id.tvKontaktname);
             // Hier weitere Anbindungen hinzufuegen
             convertView.setTag(viewHolder);

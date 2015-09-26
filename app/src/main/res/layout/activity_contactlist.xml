@@ -39,6 +39,15 @@
         android:paddingTop="?android:attr/actionBarSize"
         android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Um Kontakte anzuzeigen, benutzen Sie die Suchfunktion am oberen Bildschirmrand."
+            android:id="@+id/tvHinweis"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
 
     </FrameLayout>
 

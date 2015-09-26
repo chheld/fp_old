@@ -37,7 +37,7 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivKontakt);
             viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
             viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
-            viewHolder.tvPersonnr = (TextView) convertView.findViewById(R.id.tvPersonnr);
+            viewHolder.tvPersonnr = (TextView) convertView.findViewById(R.id.tvANr);
             viewHolder.tvKonkaktname = (TextView) convertView.findViewById(R.id.tvKontaktname);
             // Hier weitere Anbindungen hinzufuegen
 
