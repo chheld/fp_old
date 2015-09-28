@@ -2,11 +2,13 @@ package com.support.android.designlibdemo.ui.fragments;
 
 
 import android.content.Context;
+import android.graphics.drawable.ClipDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -130,8 +132,15 @@ public  class OrderDetailsFragment extends Fragment {
             if(tvStatus2.getText().toString().trim().length()==0)  tvStatus2.setVisibility(View.GONE);
             tvSpezifizierung.setText(mAuftrag.getSTATUS1());
             if(tvSpezifizierung.getText().toString().trim().length()==0)  tvSpezifizierung.setVisibility(View.GONE);
+            if (mAuftrag.getSEGM2ZART()==191) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 10000);
+            if (mAuftrag.getSEGM2ZART()==193) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 5000);
+            if (mAuftrag.getSEGM4ZART()==211) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 10000);
+            if (mAuftrag.getSEGM4ZART()==212) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 5000);
+            if (mAuftrag.getSEGM5ZART()==220) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 10000);
+            if (mAuftrag.getSEGM5ZART()==221) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 5000);
+            if (mAuftrag.getSEGM6ZART()==231) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 10000);
+            if (mAuftrag.getSEGM6ZART()==232) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 5000);
 
-            // Termine anzeigen
             tvKdWunschTermin.setText(mAuftrag.getUSEINTREFFTERMIN()); //USEintreffTermin nicht in der REST Abfrage
             if(tvKdWunschTermin.getText().toString().trim().length()==0) {
                 tvKdWunschTermin.setVisibility(View.GONE);
@@ -200,6 +209,11 @@ public  class OrderDetailsFragment extends Fragment {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
         mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+    }
+
+    private void setStatusIcon (ImageView iv, int level) {
+        ClipDrawable cdAB = (ClipDrawable) iv.getDrawable();
+        cdAB.setLevel(cdAB.getLevel() + level); // min 0 - max 10000
     }
 
     private void callAPIContactByPersonNr(String search) {

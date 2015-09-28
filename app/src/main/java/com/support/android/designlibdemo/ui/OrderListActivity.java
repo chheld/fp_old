@@ -132,7 +132,7 @@ public class OrderListActivity extends AppCompatActivity
             case R.id.action_settings: // TODO
                 return true;
 
-            case R.id.itm_action_search: // TODO
+            case R.id.itm_action_search: // ok
                 showSearch(true);
                 return true;
 

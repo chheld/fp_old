@@ -184,21 +184,23 @@ public class ContactListActivity extends AppCompatActivity {
 
     private void showFragment(String key, @Nullable Bundle args) {
 
+        tvHinweis.setVisibility(View.GONE);
+
         Fragment fragment = null;
         switch (key) {
 
-            case "hint":
+            case "hint": // test
                 fragment = new HintFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("hint","Hinweis");
                 fragment.setArguments(bundle);
                 break;
 
-            case "about":
+            case "about": // test
                 fragment = new AboutFragment();
                 break;
 
-            case "list":
+            case "list": // ok
                 fragment = new ContactListFragment(this);
                 fragment.setArguments(args);
                 break;

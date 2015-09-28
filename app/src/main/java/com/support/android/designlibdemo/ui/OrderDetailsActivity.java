@@ -61,7 +61,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         final OrderTabPagerAdapter adapter = new OrderTabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         Bundle bundle = new Bundle();
         bundle.putParcelable("auftrag",auftrag);
-        bundle.putString("hint",auftrag.getObjectAsString());
+        //bundle.putString("hint",auftrag.getObjectAsString());
         adapter.setArguments(bundle);
 
         viewPager.setAdapter(adapter);
