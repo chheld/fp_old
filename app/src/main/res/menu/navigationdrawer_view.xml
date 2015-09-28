@@ -24,7 +24,7 @@
         android:enabled="false"/>
     <item
         android:id="@+id/nav_orders"
-        android:icon="@drawable/ic_order2"
+        android:icon="@drawable/ic_order"
         android:title="Aufträge" />
     <item
         android:id="@+id/nav_freight"

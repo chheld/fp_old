@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
-        versionName "0.39g-build-${buildLongDateTime()}"
+        versionName "0.40-build-${buildLongDateTime()}"
     }
     buildTypes {
         release {

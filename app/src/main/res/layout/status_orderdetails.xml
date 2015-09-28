@@ -9,7 +9,7 @@
         android:id="@+id/ivAB"
         android:layout_marginRight="10dp"
         android:src="@drawable/clip_orderdetails_status_order"
-        android:background="@drawable/ic_order2"
+        android:background="@drawable/ic_order"
         android:backgroundTint="#2b000000"
         android:backgroundTintMode="src_in" />
 

@@ -7,7 +7,7 @@
     <ImageView
         android:layout_height="wrap_content"
         android:id="@+id/ivKontakt"
-        android:src="@drawable/ic_order2"
+        android:src="@drawable/ic_order"
         android:layout_width="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

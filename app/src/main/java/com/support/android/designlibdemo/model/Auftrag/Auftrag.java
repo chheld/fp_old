@@ -427,7 +427,7 @@ public class Auftrag implements Parcelable {
 
     public Auftrag() {
         super();
-        this.mIcon = R.drawable.ic_order2;
+        this.mIcon = R.drawable.ic_order;
     }
 
     public Auftrag(String a) {
