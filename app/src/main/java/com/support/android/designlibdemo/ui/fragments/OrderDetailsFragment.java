@@ -31,11 +31,12 @@ import org.json.JSONObject;
 
 public  class OrderDetailsFragment extends Fragment {
 
-    private AppController mAppController = AppController.getInstance();
+    private AppController mAppController;
+    private Context mContext;
+    private View mView;
 
     private Auftrag mAuftrag;
-
-    private Context mContext;
+    private ProgressBar progressBar; // für Auftrag
 
     private TextView tvVertreterName;
     private ProgressBar pbVertreter;
@@ -43,158 +44,25 @@ public  class OrderDetailsFragment extends Fragment {
     private TextView tvLieferadresse;
     private ProgressBar pbLieferadresse;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mContext=getActivity();
+        mAppController = AppController.getInstance();
+        mContext = getActivity();
+        mView = inflater.inflate(R.layout.fragment_orderdetails, container, false);
+        progressBar = (ProgressBar) mView.findViewById(R.id.progressBar);
 
-        View view = inflater.inflate(R.layout.fragment_orderdetails, container, false);
+        // ++++ Version 1 ++++
+        //if (getArguments() != null) mAuftrag = getArguments().getParcelable("auftrag");
+        //showOrder(mView);
 
-        // Auftragsdaten anzeigen
-        TextView tvANr = (TextView) view.findViewById(R.id.tvANr);
-        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvKontaktname);
-        TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
-        TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
+        // ++++ Version 2 ++++
+        String anr = "";
+        if (getArguments() != null) anr = getArguments().getString("anr");
+        callAPIOrderByANR("http://222.222.222.60/api/orders/anr?where=" + anr);
 
-        pbVertreter = (ProgressBar) view.findViewById(R.id.progressBarVertreter);
-        TextView tvVertr1 = (TextView) view.findViewById(R.id.tvVertreter1);
-        tvVertreterName = (TextView) view.findViewById(R.id.tvVertreterName);
-
-        // Status anzeigen
-        TextView tvStatus2 = (TextView) view.findViewById(R.id.tvStatus2);
-        TextView tvzDesc = (TextView) view.findViewById(R.id.tvZDesc);
-        TextView tvSpezifizierung = (TextView) view.findViewById(R.id.tvSpezifizierung);
-
-        // Termine anzeigen
-        TextView tvKdWunschTermin = (TextView) view.findViewById(R.id.tvKdWunschTermin);
-        TextView tvKdBestTermin = (TextView) view.findViewById(R.id.tvKdBestTermin);
-        TextView tvProdPlanTermin = (TextView) view.findViewById(R.id.tvProdPlanTermin);
-        TextView tvProdDispTermin = (TextView) view.findViewById(R.id.tvProdDispTermin);
-
-        // Kundendaten anzeigen
-        TextView tvKdNr = (TextView) view.findViewById(R.id.tvKdNr);
-        TextView tvKTxt = (TextView) view.findViewById(R.id.tvKTxt);
-        TextView tvKW = (TextView) view.findViewById(R.id.tvKW);
-        TextView tvKJ = (TextView) view.findViewById(R.id.tvKJ);
-
-        // Lieferung anzeigen
-        TextView tvLieferadresseNr = (TextView) view.findViewById(R.id.tvLieferAdresseNr);
-        pbLieferadresse = (ProgressBar) view.findViewById(R.id.progressBarLieferadresse);
-        tvLieferadresse = (TextView) view.findViewById(R.id.tvLieferAdresse);
-
-        if (getArguments() != null) mAuftrag = getArguments().getParcelable("auftrag");
-
-        if (mAuftrag!=null) {
-
-            // Auftragsdaten anzeigen
-            tvANr.setText(mAuftrag.getANR());
-            tvBemerkung.setText(mAuftrag.getBEMERKUNG());
-            if(tvBemerkung.getText().toString().trim().length()==0)  tvBemerkung.setVisibility(View.GONE);
-            tvBestellnummer.setText(mAuftrag.getBELEGNRBEST());
-            if(tvBestellnummer.getText().toString().trim().length()==0) {
-                tvBestellnummer.setVisibility(View.GONE);
-            } else
-            {
-                tvBestellnummer.setText("Bestellung: " + mAuftrag.getBELEGNRBEST());
-            }
-            tvKommission.setText(mAuftrag.getKOMM());
-            if(tvKommission.getText().toString().trim().length()==0) {
-                tvKommission.setVisibility(View.GONE);
-            } else
-            {
-                tvKommission.setText("Kommission: " + mAuftrag.getKOMM());
-            }
-
-            // Vertreter anzeigen
-            tvVertr1.setText(mAuftrag.getVERTRETER1());
-            //tvVertreterName.setText("Lädt ...");
-            if(tvVertr1.getText().toString().trim().length()==0) {
-                tvVertr1.setVisibility(View.GONE);
-            }
-            else
-            {
-                RelativeLayout ly = (RelativeLayout)  view.findViewById(R.id.container_vertreter);
-
-                ly.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        callAPIContactByPersonNr("http://222.222.222.60/api/contact/personnr?where=" + mAuftrag.getVERTRETER1());
-                    }
-                });
-
-                callAPIContactByPersonNr("http://222.222.222.60/api/contact/personnr?where=" + mAuftrag.getVERTRETER1());
-            }
-
-            // Status anzeigen
-            tvzDesc.setText(mAuftrag.getZDESC());
-            if(tvzDesc.getText().toString().trim().length()==0)  tvzDesc.setVisibility(View.GONE);
-            tvStatus2.setText(mAuftrag.getSTATUS2());
-            if(tvStatus2.getText().toString().trim().length()==0)  tvStatus2.setVisibility(View.GONE);
-            tvSpezifizierung.setText(mAuftrag.getSTATUS1());
-            if(tvSpezifizierung.getText().toString().trim().length()==0)  tvSpezifizierung.setVisibility(View.GONE);
-            if (mAuftrag.getSEGM2ZART()==191) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 10000);
-            if (mAuftrag.getSEGM2ZART()==193) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 5000);
-            if (mAuftrag.getSEGM4ZART()==211) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 10000);
-            if (mAuftrag.getSEGM4ZART()==212) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 5000);
-            if (mAuftrag.getSEGM5ZART()==220) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 10000);
-            if (mAuftrag.getSEGM5ZART()==221) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 5000);
-            if (mAuftrag.getSEGM6ZART()==231) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 10000);
-            if (mAuftrag.getSEGM6ZART()==232) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 5000);
-
-            tvKdWunschTermin.setText(mAuftrag.getUSEINTREFFTERMIN()); //USEintreffTermin nicht in der REST Abfrage
-            if(tvKdWunschTermin.getText().toString().trim().length()==0) {
-                tvKdWunschTermin.setVisibility(View.GONE);
-                TextView lbl = (TextView) view.findViewById(R.id.lblKdWunschTermin);
-                lbl.setVisibility(View.GONE);
-            }
-            tvKdBestTermin.setText(mAuftrag.getUSEINTREFFTBEST()); // USEintreffTBest
-            if(tvKdBestTermin.getText().toString().trim().length()==0) {
-                tvKdBestTermin.setVisibility(View.GONE);
-                TextView lbl = (TextView) view.findViewById(R.id.lblKdBestTermin);
-                lbl.setVisibility(View.GONE);
-            }
-            tvProdPlanTermin.setText(mAuftrag.getSEGM1TERM()); // Segm1.Term
-            if(tvProdPlanTermin.getText().toString().trim().length()==0) {
-                tvProdPlanTermin.setVisibility(View.GONE);
-                TextView lbl = (TextView) view.findViewById(R.id.lblProdPlanTermin);
-                lbl.setVisibility(View.GONE);
-            }
-            tvProdDispTermin.setText(mAuftrag.getSEGM2TERM()); // Segm2.Term
-            if(tvProdDispTermin.getText().toString().trim().length()==0) {
-                tvProdDispTermin.setVisibility(View.GONE);
-                TextView lbl = (TextView) view.findViewById(R.id.lblProdDispTermin);
-                lbl.setVisibility(View.GONE);
-            }
-
-            // Kundendaten anzeigen
-            tvKdNr.setText(mAuftrag.getMNR());
-            tvKTxt.setText(mAuftrag.getKTXT());
-            if(tvKTxt.getText().toString().trim().length()==0)  tvKTxt.setVisibility(View.GONE);
-            tvKW.setText(Integer.toString(mAuftrag.getKW()));
-            tvKJ.setText(Integer.toString(mAuftrag.getKJ()));
-
-            // Lieferung anzeigen
-            tvLieferadresseNr.setText(mAuftrag.getADRNR2());
-            //tvLieferadresse.setText("Lädt ...");
-            if(tvLieferadresseNr.getText().toString().trim().length()==0) {
-                tvLieferadresseNr.setVisibility(View.GONE);
-            }
-            else
-            {
-                RelativeLayout ly = (RelativeLayout)  view.findViewById(R.id.container_lieferadresse);
-
-                ly.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
-                    }
-                });
-
-                callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
-            }
-
-        }
-        return view;
+        return mView;
     }
 
     @Override
@@ -254,7 +122,7 @@ public  class OrderDetailsFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        mAppController.addToRequestQueue(req);
     }
 
     private void callAPIAdresseByAdresseNr(String search) {
@@ -299,6 +167,189 @@ public  class OrderDetailsFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        mAppController.addToRequestQueue(req);
+    }
+
+    private void callAPIOrderByANR(String search) {
+
+        // Aufruf: callAPIOrderByANR("http://222.222.222.60/api/orders/anr?where=" + search);
+
+        progressBar.setVisibility(View.VISIBLE);
+        //Toast.makeText(mContext, "Lade Auftrag " + search + "...", Toast.LENGTH_SHORT).show();
+
+        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //VolleyLog.v("Response:%n %s", response.toString(4));
+                    JSONArray orders = response.getJSONArray("orders");
+                    Gson gson = new Gson();
+                    mAuftrag = gson.fromJson(orders.getJSONObject(0).toString(), Auftrag.class);
+                    // TODO: Auftragsdaten anzeigen
+                    showOrder(mView);
+                    progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
+                    Toast.makeText(mContext, orders.length() + " Einträge über ANR gefunden", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    VolleyLog.e("Error: ", e.getMessage());
+                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
+            }
+        });
+        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
+        mAppController.addToRequestQueue(req);
+    }
+
+    private void showOrder(View view) {
+
+        // Auftragsdaten anzeigen
+        TextView tvANr = (TextView) view.findViewById(R.id.tvANr);
+        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvKontaktname);
+        TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
+        TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
+
+        pbVertreter = (ProgressBar) view.findViewById(R.id.progressBarVertreter);
+        TextView tvVertr1 = (TextView) view.findViewById(R.id.tvVertreter1);
+        tvVertreterName = (TextView) view.findViewById(R.id.tvVertreterName);
+
+        // Status anzeigen
+        TextView tvStatus2 = (TextView) view.findViewById(R.id.tvStatus2);
+        TextView tvzDesc = (TextView) view.findViewById(R.id.tvZDesc);
+        TextView tvSpezifizierung = (TextView) view.findViewById(R.id.tvSpezifizierung);
+
+        // Termine anzeigen
+        TextView tvKdWunschTermin = (TextView) view.findViewById(R.id.tvKdWunschTermin);
+        TextView tvKdBestTermin = (TextView) view.findViewById(R.id.tvKdBestTermin);
+        TextView tvProdPlanTermin = (TextView) view.findViewById(R.id.tvProdPlanTermin);
+        TextView tvProdDispTermin = (TextView) view.findViewById(R.id.tvProdDispTermin);
+
+        // Kundendaten anzeigen
+        TextView tvKdNr = (TextView) view.findViewById(R.id.tvKdNr);
+        TextView tvKTxt = (TextView) view.findViewById(R.id.tvKTxt);
+        TextView tvKW = (TextView) view.findViewById(R.id.tvKW);
+        TextView tvKJ = (TextView) view.findViewById(R.id.tvKJ);
+
+        // Lieferung anzeigen
+        TextView tvLieferadresseNr = (TextView) view.findViewById(R.id.tvLieferAdresseNr);
+        pbLieferadresse = (ProgressBar) view.findViewById(R.id.progressBarLieferadresse);
+        tvLieferadresse = (TextView) view.findViewById(R.id.tvLieferAdresse);
+
+        if (mAuftrag!=null) {
+
+            // Auftragsdaten anzeigen
+            tvANr.setText(mAuftrag.getANR());
+            tvBemerkung.setText(mAuftrag.getBEMERKUNG());
+            if(tvBemerkung.getText().toString().trim().length()==0)  tvBemerkung.setVisibility(View.GONE);
+            tvBestellnummer.setText(mAuftrag.getBELEGNRBEST());
+            if(tvBestellnummer.getText().toString().trim().length()==0) {
+                tvBestellnummer.setVisibility(View.GONE);
+            } else
+            {
+                tvBestellnummer.setText("Bestellung: " + mAuftrag.getBELEGNRBEST());
+            }
+            tvKommission.setText(mAuftrag.getKOMM());
+            if(tvKommission.getText().toString().trim().length()==0) {
+                tvKommission.setVisibility(View.GONE);
+            } else
+            {
+                tvKommission.setText("Kommission: " + mAuftrag.getKOMM());
+            }
+
+            // Vertreter anzeigen
+            tvVertr1.setText(mAuftrag.getVERTRETER1());
+            if(tvVertr1.getText().toString().trim().length()==0) {
+                tvVertr1.setVisibility(View.GONE);
+            }
+            else
+            {
+                RelativeLayout layout = (RelativeLayout)  view.findViewById(R.id.container_vertreter);
+
+                layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callAPIContactByPersonNr("http://222.222.222.60/api/contact/personnr?where=" + mAuftrag.getVERTRETER1());
+                    }
+                });
+
+                callAPIContactByPersonNr("http://222.222.222.60/api/contact/personnr?where=" + mAuftrag.getVERTRETER1());
+            }
+
+            // Status anzeigen
+            tvzDesc.setText(mAuftrag.getZDESC());
+            if(tvzDesc.getText().toString().trim().length()==0)  tvzDesc.setVisibility(View.GONE);
+            tvStatus2.setText(mAuftrag.getSTATUS2());
+            if(tvStatus2.getText().toString().trim().length()==0)  tvStatus2.setVisibility(View.GONE);
+            tvSpezifizierung.setText(mAuftrag.getSTATUS1());
+            if(tvSpezifizierung.getText().toString().trim().length()==0)  tvSpezifizierung.setVisibility(View.GONE);
+            if (mAuftrag.getSEGM2ZART()==191) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 10000);
+            if (mAuftrag.getSEGM2ZART()==193) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 5000);
+            if (mAuftrag.getSEGM4ZART()==211) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 10000);
+            if (mAuftrag.getSEGM4ZART()==212) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 5000);
+            if (mAuftrag.getSEGM5ZART()==220) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 10000);
+            if (mAuftrag.getSEGM5ZART()==221) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 5000);
+            if (mAuftrag.getSEGM6ZART()==231) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 10000);
+            if (mAuftrag.getSEGM6ZART()==232) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 5000);
+
+            tvKdWunschTermin.setText(mAuftrag.getUSEINTREFFTERMIN()); //USEintreffTermin nicht in der REST Abfrage
+            if(tvKdWunschTermin.getText().toString().trim().length()==0) {
+                tvKdWunschTermin.setVisibility(View.GONE);
+                TextView lbl = (TextView) view.findViewById(R.id.lblKdWunschTermin);
+                lbl.setVisibility(View.GONE);
+            }
+            tvKdBestTermin.setText(mAuftrag.getUSEINTREFFTBEST()); // USEintreffTBest
+            if(tvKdBestTermin.getText().toString().trim().length()==0) {
+                tvKdBestTermin.setVisibility(View.GONE);
+                TextView lbl = (TextView) view.findViewById(R.id.lblKdBestTermin);
+                lbl.setVisibility(View.GONE);
+            }
+            tvProdPlanTermin.setText(mAuftrag.getSEGM1TERM()); // Segm1.Term
+            if(tvProdPlanTermin.getText().toString().trim().length()==0) {
+                tvProdPlanTermin.setVisibility(View.GONE);
+                TextView lbl = (TextView) view.findViewById(R.id.lblProdPlanTermin);
+                lbl.setVisibility(View.GONE);
+            }
+            tvProdDispTermin.setText(mAuftrag.getSEGM2TERM()); // Segm2.Term
+            if(tvProdDispTermin.getText().toString().trim().length()==0) {
+                tvProdDispTermin.setVisibility(View.GONE);
+                TextView lbl = (TextView) view.findViewById(R.id.lblProdDispTermin);
+                lbl.setVisibility(View.GONE);
+            }
+
+            // Kundendaten anzeigen
+            tvKdNr.setText(mAuftrag.getMNR());
+            tvKTxt.setText(mAuftrag.getKTXT());
+            if(tvKTxt.getText().toString().trim().length()==0)  tvKTxt.setVisibility(View.GONE);
+            tvKW.setText(Integer.toString(mAuftrag.getKW()));
+            tvKJ.setText(Integer.toString(mAuftrag.getKJ()));
+
+            // Lieferung anzeigen
+            tvLieferadresseNr.setText(mAuftrag.getADRNR2());
+            if(tvLieferadresseNr.getText().toString().trim().length()==0) {
+                tvLieferadresseNr.setVisibility(View.GONE);
+            }
+            else
+            {
+                RelativeLayout ly = (RelativeLayout)  view.findViewById(R.id.container_lieferadresse);
+
+                ly.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
+                    }
+                });
+                callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
+            }
+        }
     }
 }

@@ -15,7 +15,6 @@ import android.view.MenuItem;
 
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
-import com.support.android.designlibdemo.model.Auftrag.Auftrag;
 import com.support.android.designlibdemo.ui.adapter.OrderTabPagerAdapter;
 import com.support.android.designlibdemo.ui.fragments.AboutFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
@@ -36,13 +35,9 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Auftrag auftrag = (Auftrag) intent.getParcelableExtra("auftrag");
-        String ktxt = "";
-        String a = "";
-        if (auftrag !=null) {
-            a = auftrag.getANR();
-            ktxt = " - " + auftrag.getKTXT();
-        }
+        //Auftrag auftrag = (Auftrag) intent.getParcelableExtra("auftrag");
+        String anr = intent.getStringExtra("anr");
+
         Toolbar mToolbar = (Toolbar) findViewById(R.id.activity_orderdetails_toolbar);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
@@ -60,7 +55,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final OrderTabPagerAdapter adapter = new OrderTabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         Bundle bundle = new Bundle();
-        bundle.putParcelable("auftrag",auftrag);
+        //bundle.putParcelable("auftrag",auftrag); // version 1
+        bundle.putString("anr",anr); // version 2
         //bundle.putString("hint",auftrag.getObjectAsString());
         adapter.setArguments(bundle);
 
@@ -84,18 +80,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
             }
         });
-
-        // ######################
-
-
-        // beim ersten Öffnen der leeren Ansicht Hinweis anzeigen
-        //Bundle bundle = new Bundle();
-        //bundle.putParcelable("auftrag",auftrag);
-        //showFragment("details", bundle);
-
-        // Auftagsdaten laden
-        // mSearchRequestCounter = 0;
-        // callAPIANrByVolley(WEB_SERVER_ADDRESS+"/api/orders/anr?where=" + s);
     }
 
     private void setupToolbar(){

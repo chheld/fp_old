@@ -43,11 +43,13 @@ public class OrderListFragment extends Fragment {
     private String mSearchString;
     private ListView listView;
     private ProgressBar progressBar;
-    private AppController mAppController = AppController.getInstance();
+    private AppController mAppController;
 
+/*
     public OrderListFragment(Context c) {
         mContext = c;
     }
+*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class OrderListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        mAppController = AppController.getInstance();
+        mContext =  getActivity();
         View view = inflater.inflate(R.layout.fragment_orderlist, container, false);
         listView = (ListView) view.findViewById(R.id.listview);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -139,11 +143,11 @@ public class OrderListFragment extends Fragment {
                     progressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Auftrag auftrag = (Auftrag) parent.getItemAtPosition(position);
-                    //Toast.makeText(mContext, auftrag.getANR(), Toast.LENGTH_SHORT).show();
                     //TODO: speichern des Auftrags in letzte Vorgänge
 
                     Intent intent = new Intent(mContext, OrderDetailsActivity.class);
-                    intent.putExtra("auftrag",auftrag);
+                    //intent.putExtra("auftrag",auftrag); // Version 1
+                    intent.putExtra("anr",auftrag.getANR()); // Version 2
                     //NavUtils.navigateUpFromSameTask(intent);
                     startActivity(intent);
                 }
@@ -179,6 +183,8 @@ public class OrderListFragment extends Fragment {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    VolleyLog.e("Error: ", e.getMessage());
+                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                 }
             }
@@ -196,7 +202,7 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        mAppController.addToRequestQueue(req);
     }
 
     private void callAPIOrdersByMNR(String search) {
@@ -236,7 +242,7 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        mAppController.addToRequestQueue(req);
     }
 
     private void callAPIOrdersByKTXT(String search) {
@@ -276,7 +282,7 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        mAppController.addToRequestQueue(req);
     }
 }
 
