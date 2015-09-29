@@ -14,16 +14,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 import com.support.android.designlibdemo.model.Adresse.Adresse;
 import com.support.android.designlibdemo.model.Auftrag.Auftrag;
+import com.support.android.designlibdemo.rest.VolleyGsonRequest;
+import com.support.android.designlibdemo.rest.VolleyJsonObjectRequestHigh;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +69,7 @@ public  class OrderDetailsFragment extends Fragment {
         String anr = "";
         if (getArguments() != null) anr = getArguments().getString("anr");
         callAPIOrderByANR("http://222.222.222.60/api/orders/anr?where=" + anr);
+        callAPIAdresseByAdresseNr2("http://222.222.222.60/api/orders/anr?where=" + anr);
 
         return mView;
     }
@@ -88,7 +97,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         pbVertreter.setVisibility(View.VISIBLE);
 
-        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+        VolleyJsonObjectRequestHigh req = new VolleyJsonObjectRequestHigh(search, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -129,7 +138,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         pbLieferadresse.setVisibility(View.VISIBLE);
 
-        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+        VolleyJsonObjectRequestHigh req = new VolleyJsonObjectRequestHigh(search, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -177,7 +186,7 @@ public  class OrderDetailsFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         //Toast.makeText(mContext, "Lade Auftrag " + search + "...", Toast.LENGTH_SHORT).show();
 
-        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+        VolleyJsonObjectRequestHigh req = new VolleyJsonObjectRequestHigh(search, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -190,7 +199,8 @@ public  class OrderDetailsFragment extends Fragment {
                     showOrder(mView);
                     progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
                     Toast.makeText(mContext, orders.length() + " Einträge über ANR gefunden", Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                     VolleyLog.e("Error: ", e.getMessage());
                     Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
@@ -351,5 +361,61 @@ public  class OrderDetailsFragment extends Fragment {
                 callAPIAdresseByAdresseNr("http://222.222.222.60/api/adresse/adressenr?where=" + mAuftrag.getADRNR2());
             }
         }
+    }
+
+    private void callAPIAdresseByAdresseNr2(String search) {
+
+        //pbLieferadresse.setVisibility(View.VISIBLE);
+
+
+        VolleyGsonRequest req = new VolleyGsonRequest<Adresse>(Request.Method.GET, search, Adresse.class, null, new Response.Listener<Adresse>() {
+
+            @Override
+            public void onResponse(Adresse response) {
+                try {
+                    Toast.makeText(mContext, response.toString(), Toast.LENGTH_SHORT).show();
+
+                    //parseFlickrImageResponse(response);
+                    //((mAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    //showToast("JSON parse error");
+                }
+                //stopProgress();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle your error types accordingly.For Timeout & No connection error, you can show 'retry' button.
+                // For AuthFailure, you can re login with user credentials.
+                // For ClientError, 400 & 401, Errors happening on client side when sending api request.
+                // In this case you can check how client is forming the api and debug accordingly.
+                // For ServerError 5xx, you can do retry or handle accordingly.
+/*
+                if( error instanceof NetworkError) {
+                } else if( error instanceof ClientError) {  // -------
+                } else if( error instanceof ServerError) {
+                } else if( error instanceof AuthFailureError) {
+                } else if( error instanceof ParseError) {
+                } else if( error instanceof NoConnectionError) {
+                } else if( error instanceof TimeoutError) {
+                }
+*/
+                if( error instanceof NetworkError) {
+                } else if( error instanceof ServerError) {
+                } else if( error instanceof AuthFailureError) {
+                } else if( error instanceof ParseError) {
+                } else if( error instanceof NoConnectionError) {
+                } else if( error instanceof TimeoutError) {
+                }
+
+                //stopProgress();
+                //showToast(error.getMessage());
+            }
+        });
+
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req);
     }
 }

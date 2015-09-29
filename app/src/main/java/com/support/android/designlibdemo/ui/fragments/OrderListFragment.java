@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -24,6 +25,7 @@ import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 import com.support.android.designlibdemo.model.Auftrag.Auftrag;
 import com.support.android.designlibdemo.model.Auftrag.Auftragsliste;
+import com.support.android.designlibdemo.rest.VolleyJsonObjectRequestHigh;
 import com.support.android.designlibdemo.ui.OrderDetailsActivity;
 import com.support.android.designlibdemo.ui.adapter.OrderListAdapter;
 
@@ -45,11 +47,10 @@ public class OrderListFragment extends Fragment {
     private ProgressBar progressBar;
     private AppController mAppController;
 
-/*
+
     public OrderListFragment(Context c) {
-        mContext = c;
+        mContext = c; // TODO: löschen
     }
-*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -167,7 +168,7 @@ public class OrderListFragment extends Fragment {
         // Increase counter for pending search requests
         mSearchRequestCounter++;
 
-        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+        VolleyJsonObjectRequestHigh req = new VolleyJsonObjectRequestHigh(search, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -201,6 +202,7 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
+        req.setPriority(Request.Priority.HIGH);
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
         mAppController.addToRequestQueue(req);
     }
@@ -210,13 +212,13 @@ public class OrderListFragment extends Fragment {
         // Increase counter for pending search requests
         mSearchRequestCounter++;
 
-        JsonObjectRequest req = new JsonObjectRequest(search, new Response.Listener<JSONObject>() {
+        VolleyJsonObjectRequestHigh req = new VolleyJsonObjectRequestHigh(search, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    VolleyLog.v("Response:%n %s", response.toString(4));
-                    //Log.d("JSON",response.toString(4));
+                    //VolleyLog.v("Response:%n %s", response.toString(4));
+                    //Log.d("JSON", response.toString(4));
                     JSONArray orders = response.getJSONArray("orders");
                     mAuftragsliste.add(orders);
                     mAdapter.notifyDataSetChanged();
