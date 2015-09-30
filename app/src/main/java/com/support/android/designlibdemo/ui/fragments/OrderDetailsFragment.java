@@ -54,7 +54,6 @@ public  class OrderDetailsFragment extends Fragment {
 
     private final String VOLLEY_PATTERNS_ORDER_DETAILS = "VOLLEY_PATTERNS_ORDER_DETAILS";
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -200,7 +199,7 @@ public  class OrderDetailsFragment extends Fragment {
                     // TODO: Auftragsdaten anzeigen
                     showOrder(mView);
                     progressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
-                    Toast.makeText(mContext, orders.length() + " Einträge über ANR gefunden", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, orders.length() + " Einträge über ANR gefunden", Toast.LENGTH_SHORT).show();
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -375,7 +374,7 @@ public  class OrderDetailsFragment extends Fragment {
             @Override
             public void onResponse(Adresse response) {
                 try {
-                    Toast.makeText(mContext, response.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, response.toString(), Toast.LENGTH_SHORT).show();
 
                     //parseFlickrImageResponse(response);
                     //((mAdapter.notifyDataSetChanged();
@@ -418,7 +417,6 @@ public  class OrderDetailsFragment extends Fragment {
         });
 
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        //mAppController.addToRequestQueue(req);
         mAppController.addToRequestQueue(req, VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 }

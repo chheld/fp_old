@@ -47,7 +47,6 @@ public class OrderListFragment extends Fragment {
 
     private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
 
-
     public OrderListFragment(Context c) {
         mContext = c; // TODO: löschen - auch Aufrufe
     }
@@ -114,7 +113,7 @@ public class OrderListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     // This will tell to Volley to cancel all the pending requests
-                    mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
+                    //mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
                     progressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Auftrag auftrag = (Auftrag) parent.getItemAtPosition(position);

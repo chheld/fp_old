@@ -39,13 +39,10 @@ public class ContactListActivity extends AppCompatActivity {
     private SearchRecentSuggestions suggestions;
     private SearchView searchView;
     private TextView tvHinweis;
-    private AppController mAppController;
-    private Context mContext;
+    private AppController mAppController = AppController.getInstance();
+    private Context mContext = this;
 
-    public ContactListActivity() {
-        mAppController = AppController.getInstance();
-        mContext=this;
-    }
+    private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,7 +198,7 @@ public class ContactListActivity extends AppCompatActivity {
                 break;
 
             case "list": // ok
-                fragment = new ContactListFragment(this);
+                fragment = new ContactListFragment();
                 fragment.setArguments(args);
                 break;
 
@@ -218,7 +215,7 @@ public class ContactListActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
     }
 
     public class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {

@@ -35,22 +35,16 @@ import org.json.JSONObject;
 @SuppressLint("ValidFragment")
 public class ContactListFragment extends Fragment {
 
-    private Context mContext;
-    private Kontaktliste mListe;
-    private ContactListAdapter mAdapter;
-    private int mSearchRequestCounter;      // Zaehler fuer die http-Anfragen
+    private Context mContext = getActivity();
+    private Kontaktliste mListe = new Kontaktliste();
+    private ContactListAdapter mAdapter = null;
+    private int mSearchRequestCounter = 0;      // Zaehler fuer die http-Anfragen
     private String mSearchString;
     private ListView mListView;
     private ProgressBar mProgressBar;
-    private AppController mAppController;
+    private AppController mAppController = AppController.getInstance();
 
-    public ContactListFragment(Context c) {
-        mContext = c;
-        mListe = new Kontaktliste();
-        mAdapter = null;
-        mSearchRequestCounter = 0;
-        mAppController = AppController.getInstance();
-    }
+    private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -89,7 +83,7 @@ public class ContactListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
     }
 
     private class DialogBox extends Builder {
@@ -138,7 +132,7 @@ public class ContactListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     // This will tell to Volley to cancel all the pending requests
-                    mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+                    //mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
                     mProgressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Kontakt kontakt = (Kontakt) parent.getItemAtPosition(position);
@@ -198,9 +192,8 @@ public class ContactListFragment extends Fragment {
                 if (mSearchRequestCounter < 1) mProgressBar.setVisibility(View.GONE);  // Fortschritt ausblenden
             }
         });
-        //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        AppController.getInstance().addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        AppController.getInstance().addToRequestQueue(req,VOLLEY_PATTERNS_CONTACT_LIST);
     }
 }
 

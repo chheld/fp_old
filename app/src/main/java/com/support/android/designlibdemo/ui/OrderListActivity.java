@@ -10,7 +10,6 @@ import android.provider.SearchRecentSuggestions;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -26,7 +25,6 @@ import android.widget.Toast;
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 import com.support.android.designlibdemo.provider.OrderSuggestionProvider;
-import com.support.android.designlibdemo.test.SomeDialog;
 import com.support.android.designlibdemo.test.test_MyDialogFragment;
 import com.support.android.designlibdemo.ui.fragments.AboutFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
@@ -45,6 +43,8 @@ public class OrderListActivity extends AppCompatActivity
     private TextView tvHinweis;
     private AppController mAppController;
     private Context mContext;
+
+    private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
 
     public OrderListActivity() {
         mAppController = AppController.getInstance();
@@ -95,7 +95,7 @@ public class OrderListActivity extends AppCompatActivity
         } catch (Exception e) {
         }
 
-        //TODO: fertigstellen in eigener Klasse
+        //TODO: fertigstellen in eigener Klasse VPNUtils
         checkServerConnection checkServerConnection = new checkServerConnection();
         checkServerConnection.execute("qw1");
     }
@@ -224,10 +224,10 @@ public class OrderListActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
     }
 
-    public class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {
+    private class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -269,7 +269,7 @@ public class OrderListActivity extends AppCompatActivity
             catch (Exception e)
             {
                 e.printStackTrace();
-                Toast.makeText(mContext, "VPN App ist nicht installiert", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Die VPN App ist nicht installiert", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -291,20 +291,5 @@ public class OrderListActivity extends AppCompatActivity
     public void onFinishEditDialog(String inputText) {
 
         Log.d("DIALOGRESULT", "Input value from DialogFragment " + inputText);
-    }
-
-    private void showEditDialog() {
-
-/*
-        FragmentManager fm = getSupportFragmentManager();
-        test_MyDialogFragment editNameDialog = new test_MyDialogFragment();
-        editNameDialog.show(fm, "fragment_edit_name");
-*/
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Create and show the dialog.
-        SomeDialog newFragment = new SomeDialog ();
-        newFragment.show(ft, "dialog");
-
     }
 }
