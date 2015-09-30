@@ -19,8 +19,7 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="#3B7AD6"
             android:indeterminateTintMode="src_in"
-            android:indeterminate="true"
-            android:visibility="gone" />
+            android:indeterminate="true" />
 
         <RelativeLayout
             android:layout_width="match_parent"

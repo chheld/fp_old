@@ -1,9 +1,7 @@
 package com.support.android.designlibdemo.ui.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,9 +45,11 @@ public class OrderListFragment extends Fragment {
     private ProgressBar progressBar;
     private AppController mAppController;
 
+    private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
+
 
     public OrderListFragment(Context c) {
-        mContext = c; // TODO: löschen
+        mContext = c; // TODO: löschen - auch Aufrufe
     }
 
     @Override
@@ -91,33 +91,7 @@ public class OrderListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
-    }
-
-    private class DialogBox extends Builder {
-
-        private Context context;
-
-
-        public DialogBox(Context c) {
-            super(c);
-            context = c;
-        }
-
-
-        public DialogBox(Context context, String title, String message) {
-            super(context);
-            this.context = context;
-            setMessage(message);
-            setTitle(title);
-            setCancelable(false);
-            setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    dialog.dismiss(); // It's just for info so we don't really care what this does
-                }
-            });
-        }
+        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
     }
 
     private void doSearch(String search) {
@@ -140,7 +114,7 @@ public class OrderListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     // This will tell to Volley to cancel all the pending requests
-                    mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+                    mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
                     progressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Auftrag auftrag = (Auftrag) parent.getItemAtPosition(position);
@@ -203,8 +177,8 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setPriority(Request.Priority.HIGH);
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
     }
 
     private void callAPIOrdersByMNR(String search) {
@@ -243,8 +217,8 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
     }
 
     private void callAPIOrdersByKTXT(String search) {
@@ -283,8 +257,8 @@ public class OrderListFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
     }
 }
 

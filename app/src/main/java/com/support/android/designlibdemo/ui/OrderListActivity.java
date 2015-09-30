@@ -4,8 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
@@ -34,12 +32,7 @@ import com.support.android.designlibdemo.ui.fragments.AboutFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
 import com.support.android.designlibdemo.ui.fragments.OrderListFragment;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -231,63 +224,7 @@ public class OrderListActivity extends AppCompatActivity
     @Override
     public void onStop() {
         super.onStop();
-        // This will tell to Volley to cancel all the pending requests
         mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
-    }
-
-    private boolean isURLReachable() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected()) {
-            try {
-                URL url = new URL("http://google.com");   // Change to "http://google.com" for www  test.
-                HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                urlc.setConnectTimeout(1 * 1000);          // 1 s.
-                urlc.connect();
-                if (urlc.getResponseCode() == 200) {        // 200 = "OK" code (http connection is fine).
-                    Log.d("isConnectedToServer1", "Success !");
-                    return true;
-                } else {
-                    Log.d("isConnectedToServer1", "Failure !");
-                    return false;
-                }
-            } catch (MalformedURLException e1) {
-                return false;
-            } catch (IOException e) {
-                return false;
-            }
-        }
-        return false;
-    }
-
-    private boolean isPingable (String url) {
-
-        Boolean ret = false;
-        String str = "";
-
-        try
-        {
-            Process process = Runtime.getRuntime().exec("/system/bin/ping -c 8 " + "google.de");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            int i;
-            char[] buffer = new char[4096];
-            StringBuffer output = new StringBuffer();
-            while ((i = reader.read(buffer)) > 0)
-                output.append(buffer, 0, i);
-            reader.close();
-
-            str = output.toString();
-
-            ret=true;
-        }
-        catch (IOException e)
-        {
-
-            e.printStackTrace();
-            ret=false;
-        }
-
-        return ret;
     }
 
     public class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {

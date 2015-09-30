@@ -52,6 +52,8 @@ public  class OrderDetailsFragment extends Fragment {
     private TextView tvLieferadresse;
     private ProgressBar pbLieferadresse;
 
+    private final String VOLLEY_PATTERNS_ORDER_DETAILS = "VOLLEY_PATTERNS_ORDER_DETAILS";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -85,10 +87,10 @@ public  class OrderDetailsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 
-    private void setStatusIcon (ImageView iv, int level) {
+    private void setColorStatusIcon(ImageView iv, int level) {
         ClipDrawable cdAB = (ClipDrawable) iv.getDrawable();
         cdAB.setLevel(cdAB.getLevel() + level); // min 0 - max 10000
     }
@@ -130,8 +132,8 @@ public  class OrderDetailsFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 
     private void callAPIAdresseByAdresseNr(String search) {
@@ -175,8 +177,8 @@ public  class OrderDetailsFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req, VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 
     private void callAPIOrderByANR(String search) {
@@ -217,8 +219,8 @@ public  class OrderDetailsFragment extends Fragment {
             }
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
-        req.setRetryPolicy(new DefaultRetryPolicy(3000, 1, 2));
-        mAppController.addToRequestQueue(req);
+        req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
+        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 
     private void showOrder(View view) {
@@ -302,14 +304,14 @@ public  class OrderDetailsFragment extends Fragment {
             if(tvStatus2.getText().toString().trim().length()==0)  tvStatus2.setVisibility(View.GONE);
             tvSpezifizierung.setText(mAuftrag.getSTATUS1());
             if(tvSpezifizierung.getText().toString().trim().length()==0)  tvSpezifizierung.setVisibility(View.GONE);
-            if (mAuftrag.getSEGM2ZART()==191) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 10000);
-            if (mAuftrag.getSEGM2ZART()==193) setStatusIcon((ImageView) view.findViewById(R.id.ivAB), 5000);
-            if (mAuftrag.getSEGM4ZART()==211) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 10000);
-            if (mAuftrag.getSEGM4ZART()==212) setStatusIcon((ImageView) view.findViewById(R.id.ivLS), 5000);
-            if (mAuftrag.getSEGM5ZART()==220) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 10000);
-            if (mAuftrag.getSEGM5ZART()==221) setStatusIcon((ImageView) view.findViewById(R.id.ivENT), 5000);
-            if (mAuftrag.getSEGM6ZART()==231) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 10000);
-            if (mAuftrag.getSEGM6ZART()==232) setStatusIcon((ImageView) view.findViewById(R.id.ivRG), 5000);
+            if (mAuftrag.getSEGM2ZART()==191) setColorStatusIcon((ImageView) view.findViewById(R.id.ivAB), 10000);
+            if (mAuftrag.getSEGM2ZART()==193) setColorStatusIcon((ImageView) view.findViewById(R.id.ivAB), 5000);
+            if (mAuftrag.getSEGM4ZART()==211) setColorStatusIcon((ImageView) view.findViewById(R.id.ivLS), 10000);
+            if (mAuftrag.getSEGM4ZART()==212) setColorStatusIcon((ImageView) view.findViewById(R.id.ivLS), 5000);
+            if (mAuftrag.getSEGM5ZART()==220) setColorStatusIcon((ImageView) view.findViewById(R.id.ivENT), 10000);
+            if (mAuftrag.getSEGM5ZART()==221) setColorStatusIcon((ImageView) view.findViewById(R.id.ivENT), 5000);
+            if (mAuftrag.getSEGM6ZART()==231) setColorStatusIcon((ImageView) view.findViewById(R.id.ivRG), 10000);
+            if (mAuftrag.getSEGM6ZART()==232) setColorStatusIcon((ImageView) view.findViewById(R.id.ivRG), 5000);
 
             tvKdWunschTermin.setText(mAuftrag.getUSEINTREFFTERMIN()); //USEintreffTermin nicht in der REST Abfrage
             if(tvKdWunschTermin.getText().toString().trim().length()==0) {
@@ -416,6 +418,7 @@ public  class OrderDetailsFragment extends Fragment {
         });
 
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req);
+        //mAppController.addToRequestQueue(req);
+        mAppController.addToRequestQueue(req, VOLLEY_PATTERNS_ORDER_DETAILS);
     }
 }
