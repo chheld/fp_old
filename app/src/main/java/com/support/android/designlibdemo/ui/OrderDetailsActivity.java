@@ -25,12 +25,14 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private int mSearchRequestCounter = 0;
     private Toolbar mToolbar;
     private TabLayout tabLayout;
-    private AppController mAppController = AppController.getInstance();
+    private AppController mAppController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        mAppController = AppController.getInstance();
+
         setContentView(R.layout.activity_orderdetails);
 
         Intent intent = getIntent();
@@ -48,7 +50,6 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
 
         setupTablayout();
-
 
         // ######################
 

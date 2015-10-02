@@ -44,16 +44,14 @@ public class OrderListActivity extends AppCompatActivity {
 
     private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
 
-    public OrderListActivity() {
-        mAppController = AppController.getInstance();
-        mContext=this;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderlist);
+
+        mAppController = AppController.getInstance();
+        mContext = this;
 
         tvHinweis = (TextView) findViewById(R.id.tvHinweis);
 

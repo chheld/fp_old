@@ -1,7 +1,6 @@
 package com.support.android.designlibdemo.ui;
 
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mSelectedMenuItem = "";
-    private ServiceConnection mConnection;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

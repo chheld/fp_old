@@ -39,8 +39,8 @@ public class ContactListActivity extends AppCompatActivity {
     private SearchRecentSuggestions suggestions;
     private SearchView searchView;
     private TextView tvHinweis;
-    private AppController mAppController = AppController.getInstance();
-    private Context mContext = this;
+    private AppController mAppController;
+    private Context mContext;
 
     private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
 
@@ -49,6 +49,9 @@ public class ContactListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactlist);
+
+        mAppController = AppController.getInstance();
+        mContext = this;
 
         tvHinweis = (TextView) findViewById(R.id.tvHinweis);
 
