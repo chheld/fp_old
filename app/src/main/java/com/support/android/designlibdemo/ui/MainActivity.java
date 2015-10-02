@@ -1,14 +1,13 @@
 package com.support.android.designlibdemo.ui;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -125,36 +124,6 @@ public class MainActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: wirklich notwendig ?
         this.startActivity(intent);
         //startActivityForResult(intent, 1);
-    }
-
-    private void startVPN() {
-
-/*
-        final String EXTRA_NAME = "app.openconnect.Fp";
-
-        Intent shortcutIntent = new Intent(Intent.ACTION_MAIN);
-        shortcutIntent.setClassName("app.openconnect", "app.openconnect.LaunchVPN");
-        shortcutIntent.putExtra(EXTRA_NAME,"upb ssl");
-        startActivity(shortcutIntent);
-*/
-        // VPN Client anzeigen - läuft
-        PackageManager manager = this.getPackageManager();
-        Intent i = manager.getLaunchIntentForPackage("app.openconnect");
-        i.addCategory(Intent.CATEGORY_LAUNCHER);
-        i.setClassName("app.openconnect", "app.openconnect.LaunchVPN");
-        i.putExtra("Fp", "upb ssl"); // zum direkten Öffenen der FP-Einstellungen, sonst weglassen
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //TODO: wirklich notwendig ?
-        this.startActivity(i);
-        //startActivityForResult(i, 1);
-
-
-    }
-
-    private void activateVPN() {
-
-        Intent serviceIntent = new Intent().setComponent(new ComponentName("app.openconnect.api", "app.openconnect.api.IOpenVPNAPIService"));
-        startService(serviceIntent);
-        bindService(serviceIntent, mConnection, BIND_AUTO_CREATE);
     }
 
     private void showSettings(){

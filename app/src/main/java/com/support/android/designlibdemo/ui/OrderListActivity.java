@@ -25,7 +25,6 @@ import android.widget.Toast;
 import com.support.android.designlibdemo.AppController;
 import com.support.android.designlibdemo.R;
 import com.support.android.designlibdemo.provider.OrderSuggestionProvider;
-import com.support.android.designlibdemo.test.test_MyDialogFragment;
 import com.support.android.designlibdemo.ui.fragments.AboutFragment;
 import com.support.android.designlibdemo.ui.fragments.HintFragment;
 import com.support.android.designlibdemo.ui.fragments.OrderListFragment;
@@ -34,8 +33,7 @@ import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class OrderListActivity extends AppCompatActivity
-        implements test_MyDialogFragment.EditNameDialogListener {
+public class OrderListActivity extends AppCompatActivity {
 
     private MenuItem searchItem;
     private SearchRecentSuggestions suggestions;
@@ -288,9 +286,4 @@ public class OrderListActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onFinishEditDialog(String inputText) {
-
-        Log.d("DIALOGRESULT", "Input value from DialogFragment " + inputText);
-    }
 }
