@@ -208,7 +208,8 @@ public class OrderListActivity extends AppCompatActivity
                 break;
 
             case "list":
-                fragment = new OrderListFragment(this);
+                //fragment = new OrderListFragment(this);
+                fragment = new OrderListFragment();
                 fragment.setArguments(args);
                 break;
 

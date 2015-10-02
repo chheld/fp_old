@@ -39,7 +39,6 @@ public class OrderListFragment extends Fragment {
     private Auftragsliste mAuftragsliste = new Auftragsliste();
     private OrderListAdapter mAdapter = null;
     private int mSearchRequestCounter = 0;      // Zaehler fuer die http-Anfragen
-    private int mSearchResults = 0;             // Zaehler Suchergebnis gesamt
     private String mSearchString;
     private ListView listView;
     private ProgressBar progressBar;
@@ -47,9 +46,9 @@ public class OrderListFragment extends Fragment {
 
     private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
 
-    public OrderListFragment(Context c) {
+/*    public OrderListFragment(Context c) {
         mContext = c; // TODO: löschen - auch Aufrufe
-    }
+    }*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -130,7 +129,8 @@ public class OrderListFragment extends Fragment {
             // start http requests
             mSearchRequestCounter = 0;
             callAPIOrdersByANR("http://222.222.222.60/api/orders/anr?where=" + search);
-            //Auftrag auftrag = new Auftrag();
+            // TODO: Lade fkt in auftrag verlagern
+            // Auftrag auftrag = new Auftrag();
             //auftrag.loadOrderDataByANR(mContext,"http://222.222.222.60/api/orders/anr?where=" + search);
             callAPIOrdersByMNR("http://222.222.222.60/api/orders/mnr/" + search);
             callAPIOrdersByKTXT("http://222.222.222.60/api/orders/ktxt?where=" + search + "&fields=anr,mnr,ktxt,bemerkung,komm,kw,kj");

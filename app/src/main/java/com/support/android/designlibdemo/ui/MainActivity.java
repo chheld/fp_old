@@ -137,10 +137,6 @@ public class MainActivity extends AppCompatActivity {
         shortcutIntent.putExtra(EXTRA_NAME,"upb ssl");
         startActivity(shortcutIntent);
 */
-
-
-        // TODO: VPN aktivieren
-
         // VPN Client anzeigen - läuft
         PackageManager manager = this.getPackageManager();
         Intent i = manager.getLaunchIntentForPackage("app.openconnect");

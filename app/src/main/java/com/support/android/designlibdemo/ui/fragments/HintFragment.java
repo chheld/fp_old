@@ -17,7 +17,6 @@ public  class HintFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_hint, container, false);
         TextView tvHinweis = (TextView) view.findViewById(R.id.tvHinweis);
 
-        // TODO: evtl. übergebenen Parametertext ermitteln
         if (getArguments() != null) {
             tvHinweis.setText(getArguments().getString("hint", ":-)"));
         }
