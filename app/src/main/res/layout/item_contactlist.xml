@@ -17,11 +17,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvPersonNr"
-        android:text="Nummer"
+        android:id="@+id/lblKontakt"
+        android:text="Kontakt"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_toRightOf="@+id/ivKontakt"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvPersonNr"
+        android:text="Nr"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_toRightOf="@+id/lblKontakt"
+        android:layout_alignParentTop="false"
+        android:layout_alignTop="@+id/lblKontakt" />
 
     <TextView
         android:layout_width="match_parent"
@@ -33,7 +44,7 @@
         android:layout_below="@+id/tvPersonNr"
         android:layout_alignParentEnd="false"
         android:layout_alignParentRight="true"
-        android:layout_alignLeft="@+id/tvPersonNr" />
+        android:layout_alignLeft="@+id/lblKontakt" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,7 +59,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kundensuch- \nbezeichnung"
+        android:text="Kundensuchbezeichnung"
         android:id="@+id/tvKTxt"
         android:ellipsize="end"
         android:layout_alignParentRight="true"

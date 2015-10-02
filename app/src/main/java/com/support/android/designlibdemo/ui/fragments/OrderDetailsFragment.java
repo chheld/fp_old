@@ -226,7 +226,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         // Auftragsdaten anzeigen
         TextView tvANr = (TextView) view.findViewById(R.id.tvANr);
-        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvName);
+        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvName); //TODO: tvName in tvBemerkung ändern
         TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
         TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
 
@@ -245,14 +245,14 @@ public  class OrderDetailsFragment extends Fragment {
         TextView tvProdPlanTermin = (TextView) view.findViewById(R.id.tvProdPlanTermin);
         TextView tvProdDispTermin = (TextView) view.findViewById(R.id.tvProdDispTermin);
 
-        // Kundendaten anzeigen
+        // Kunden anzeigen
         TextView tvKdNr = (TextView) view.findViewById(R.id.tvKdNr);
         TextView tvKTxt = (TextView) view.findViewById(R.id.tvKTxt);
         TextView tvKW = (TextView) view.findViewById(R.id.tvKW);
         TextView tvKJ = (TextView) view.findViewById(R.id.tvKJ);
 
-        // Lieferung anzeigen
-        TextView tvLieferadresseNr = (TextView) view.findViewById(R.id.tvLieferAdresseNr);
+        // Lieferadresse anzeigen
+        TextView tvLieferadresseNr = (TextView) view.findViewById(R.id.tvAdresseNr);
         pbLieferadresse = (ProgressBar) view.findViewById(R.id.progressBarLieferadresse);
         tvLieferadresse = (TextView) view.findViewById(R.id.tvLieferAdresse);
 

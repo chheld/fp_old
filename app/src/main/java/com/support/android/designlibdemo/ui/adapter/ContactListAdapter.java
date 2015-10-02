@@ -35,10 +35,10 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
             // Viewholder an View anbinden
             viewHolder = new ViewHolder();
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivKontakt);
-            viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
-            viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
             viewHolder.tvPersonnr = (TextView) convertView.findViewById(R.id.tvPersonNr);
             viewHolder.tvKonkaktname = (TextView) convertView.findViewById(R.id.tvName);
+            viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
+            viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
             // Hier weitere Anbindungen hinzufuegen
 
             convertView.setTag(viewHolder);
@@ -48,11 +48,11 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
         }
 
         // Populate the data into the template view using the data object
+        viewHolder.ivIcon.setImageResource(kontakt.getIcon());
         viewHolder.tvPersonnr.setText(kontakt.getPERSONNR());
+        viewHolder.tvKonkaktname.setText(kontakt.getVORNAME() + " " +kontakt.getNAME());
         viewHolder.tvKTxt.setText(kontakt.getRELFIRMA_KTXT());
         viewHolder.tvKdNr.setText(kontakt.getFIRMANR());
-        viewHolder.ivIcon.setImageResource(kontakt.getIcon());
-        viewHolder.tvKonkaktname.setText(kontakt.getVORNAME() + " " +kontakt.getNAME());
         // Hier weitere Zuweisungen hinzufuegen
 
         return convertView;
@@ -61,10 +61,10 @@ public class ContactListAdapter extends ArrayAdapter<Kontakt> {
     // View lookup cache
     private static class ViewHolder {
         ImageView ivIcon;
-        TextView tvKdNr;
-        TextView tvKTxt;
         TextView tvPersonnr;
         TextView tvKonkaktname;
+        TextView tvKdNr;
+        TextView tvKTxt;
         // Hier weitere Holder-Eigenschaften hinzufuegen
     }
 

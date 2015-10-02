@@ -35,9 +35,9 @@ public class OrderListAdapter extends ArrayAdapter<Auftrag> {
             // Viewholder an View anbinden
             viewHolder = new ViewHolder();
             viewHolder.ivIcon = (ImageView) convertView.findViewById(R.id.ivOrder);
+            viewHolder.tvANr = (TextView) convertView.findViewById(R.id.tvANr);
             viewHolder.tvKdNr = (TextView) convertView.findViewById(R.id.tvKdNr);
             viewHolder.tvKTxt = (TextView) convertView.findViewById(R.id.tvKTxt);
-            viewHolder.tvANr = (TextView) convertView.findViewById(R.id.tvANr);
             viewHolder.tvBemerkung = (TextView) convertView.findViewById(R.id.tvBemerkung);
             // Hier weitere Anbindungen hinzufuegen
             convertView.setTag(viewHolder);
@@ -46,10 +46,10 @@ public class OrderListAdapter extends ArrayAdapter<Auftrag> {
         }
 
         // Populate the data into the template view using the data object
-        viewHolder.tvANr.setText(ord.getANR());
-        viewHolder.tvKTxt.setText(ord.getKTXT());
-        viewHolder.tvKdNr.setText(ord.getMNR());
         viewHolder.ivIcon.setImageResource(ord.getIcon());
+        viewHolder.tvANr.setText(ord.getANR());
+        viewHolder.tvKdNr.setText(ord.getMNR());
+        viewHolder.tvKTxt.setText(ord.getKTXT());
         viewHolder.tvBemerkung.setText(ord.getBEMERKUNG());
         // Hier weitere Zuweisungen hinzufuegen
 
@@ -59,9 +59,9 @@ public class OrderListAdapter extends ArrayAdapter<Auftrag> {
     // View lookup cache
     private static class ViewHolder {
         ImageView ivIcon;
+        TextView tvANr;
         TextView tvKdNr;
         TextView tvKTxt;
-        TextView tvANr;
         TextView tvBemerkung;
         // Hier weitere Holder-Eigenschaften hinzufuegen
     }
