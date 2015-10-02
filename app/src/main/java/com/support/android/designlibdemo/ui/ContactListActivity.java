@@ -50,6 +50,8 @@ public class ContactListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactlist);
 
+        tvHinweis = (TextView) findViewById(R.id.tvHinweis);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.activity_contacts_toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);

@@ -76,6 +76,7 @@ public class OrderListFragment extends Fragment {
 
         mAppController = AppController.getInstance();
         mContext =  getActivity();
+
         View view = inflater.inflate(R.layout.fragment_orderlist, container, false);
         listView = (ListView) view.findViewById(R.id.listview);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);

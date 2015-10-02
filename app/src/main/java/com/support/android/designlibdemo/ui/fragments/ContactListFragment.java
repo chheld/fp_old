@@ -35,14 +35,14 @@ import org.json.JSONObject;
 @SuppressLint("ValidFragment")
 public class ContactListFragment extends Fragment {
 
-    private Context mContext = getActivity();
+    private AppController mAppController;
+    private Context mContext;
     private Kontaktliste mListe = new Kontaktliste();
     private ContactListAdapter mAdapter = null;
     private int mSearchRequestCounter = 0;      // Zaehler fuer die http-Anfragen
     private String mSearchString;
     private ListView mListView;
     private ProgressBar mProgressBar;
-    private AppController mAppController = AppController.getInstance();
 
     private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
 
@@ -68,6 +68,9 @@ public class ContactListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mContext = getActivity();
+        mAppController = AppController.getInstance();
 
         View view = inflater.inflate(R.layout.fragment_contactlist, container, false);
         mListView = (ListView) view.findViewById(R.id.listview);
