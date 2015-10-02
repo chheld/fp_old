@@ -44,7 +44,7 @@ public class ContactListFragment extends Fragment {
     private ListView mListView;
     private ProgressBar mProgressBar;
 
-    private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
+    private final String VOLLEY_TAG = "VOLLEY_TAG_ContactListFragment";
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class ContactListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
     private class DialogBox extends Builder {
@@ -135,7 +135,7 @@ public class ContactListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     // This will tell to Volley to cancel all the pending requests
-                    //mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
+                    //mAppController.cancelPendingRequests(VOLLEY_TAG);
                     mProgressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Kontakt kontakt = (Kontakt) parent.getItemAtPosition(position);
@@ -196,7 +196,7 @@ public class ContactListFragment extends Fragment {
             }
         });
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        AppController.getInstance().addToRequestQueue(req,VOLLEY_PATTERNS_CONTACT_LIST);
+        AppController.getInstance().addToRequestQueue(req,VOLLEY_TAG);
     }
 }
 

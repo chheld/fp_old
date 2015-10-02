@@ -27,6 +27,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private AppController mAppController;
 
+    private final String VOLLEY_TAG = "VOLLEY_TAG_OrderDetailsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -158,7 +160,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(AppController.VOLLEY_PATTERNS);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
 }

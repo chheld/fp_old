@@ -42,7 +42,7 @@ public class ContactListActivity extends AppCompatActivity {
     private AppController mAppController;
     private Context mContext;
 
-    private final String VOLLEY_PATTERNS_CONTACT_LIST = "VOLLEY_PATTERNS_CONTACT_LIST";
+    private final String VOLLEY_TAG = "VOLLEY_TAG_ContactListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,7 +220,7 @@ public class ContactListActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_CONTACT_LIST);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
     public class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {

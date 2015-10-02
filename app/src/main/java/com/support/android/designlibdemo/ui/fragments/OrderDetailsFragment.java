@@ -52,7 +52,7 @@ public  class OrderDetailsFragment extends Fragment {
     private TextView tvLieferadresse;
     private ProgressBar pbLieferadresse;
 
-    private final String VOLLEY_PATTERNS_ORDER_DETAILS = "VOLLEY_PATTERNS_ORDER_DETAILS";
+    private final String VOLLEY_TAG = "VOLLEY_TAG_OrderDetailsFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public  class OrderDetailsFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_DETAILS);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
     private void setColorStatusIcon(ImageView iv, int level) {
@@ -132,7 +132,7 @@ public  class OrderDetailsFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_DETAILS);
+        mAppController.addToRequestQueue(req,VOLLEY_TAG);
     }
 
     private void callAPIAdresseByAdresseNr(String search) {
@@ -177,7 +177,7 @@ public  class OrderDetailsFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req, VOLLEY_PATTERNS_ORDER_DETAILS);
+        mAppController.addToRequestQueue(req, VOLLEY_TAG);
     }
 
     private void callAPIOrderByANR(String search) {
@@ -219,7 +219,7 @@ public  class OrderDetailsFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_DETAILS);
+        mAppController.addToRequestQueue(req,VOLLEY_TAG);
     }
 
     private void showOrder(View view) {
@@ -417,6 +417,6 @@ public  class OrderDetailsFragment extends Fragment {
         });
 
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req, VOLLEY_PATTERNS_ORDER_DETAILS);
+        mAppController.addToRequestQueue(req, VOLLEY_TAG);
     }
 }

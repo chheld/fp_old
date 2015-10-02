@@ -44,11 +44,7 @@ public class OrderListFragment extends Fragment {
     private ProgressBar progressBar;
     private AppController mAppController;
 
-    private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
-
-/*    public OrderListFragment(Context c) {
-        mContext = c; // TODO: löschen - auch Aufrufe
-    }*/
+    private final String VOLLEY_TAG = "VOLLEY_TAG_OrderListFragment";
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -90,7 +86,7 @@ public class OrderListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         // This will tell to Volley to cancel all the pending requests
-        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
     private void doSearch(String search) {
@@ -113,7 +109,7 @@ public class OrderListFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     // This will tell to Volley to cancel all the pending requests
-                    //mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
+                    //mAppController.cancelPendingRequests(VOLLEY_TAG);
                     progressBar.setVisibility(View.GONE);  // Fortschrittsanzeige ausblenden
 
                     Auftrag auftrag = (Auftrag) parent.getItemAtPosition(position);
@@ -178,7 +174,7 @@ public class OrderListFragment extends Fragment {
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setPriority(Request.Priority.HIGH);
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
+        mAppController.addToRequestQueue(req, VOLLEY_TAG);
     }
 
     private void callAPIOrdersByMNR(String search) {
@@ -218,7 +214,7 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 2));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
+        mAppController.addToRequestQueue(req, VOLLEY_TAG);
     }
 
     private void callAPIOrdersByKTXT(String search) {
@@ -258,7 +254,7 @@ public class OrderListFragment extends Fragment {
         });
         //req.setRetryPolicy(new DefaultRetryPolicy(3000, 2, 3));
         req.setRetryPolicy(new DefaultRetryPolicy(3000, 3, 2));
-        mAppController.addToRequestQueue(req,VOLLEY_PATTERNS_ORDER_LIST);
+        mAppController.addToRequestQueue(req, VOLLEY_TAG);
     }
 }
 

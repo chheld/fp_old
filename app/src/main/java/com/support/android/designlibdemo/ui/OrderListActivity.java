@@ -42,7 +42,7 @@ public class OrderListActivity extends AppCompatActivity {
     private AppController mAppController;
     private Context mContext;
 
-    private final String VOLLEY_PATTERNS_ORDER_LIST = "VOLLEY_PATTERNS_ORDER_LIST";
+    private final String VOLLEY_TAG = "VOLLEY_TAG_OrderListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,7 +221,7 @@ public class OrderListActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        mAppController.cancelPendingRequests(VOLLEY_PATTERNS_ORDER_LIST);
+        mAppController.cancelPendingRequests(VOLLEY_TAG);
     }
 
     private class checkServerConnection extends AsyncTask<String, Boolean, Boolean> {
