@@ -226,7 +226,7 @@ public  class OrderDetailsFragment extends Fragment {
 
         // Auftragsdaten anzeigen
         TextView tvANr = (TextView) view.findViewById(R.id.tvANr);
-        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvKontaktname);
+        TextView tvBemerkung = (TextView) view.findViewById(R.id.tvName);
         TextView tvBestellnummer = (TextView) view.findViewById(R.id.tvBestellnummer);
         TextView tvKommission = (TextView) view.findViewById(R.id.tvKommission);
 
